@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://ccxouvwj8j50g"]
+[gd_scene load_steps=28 format=4 uid="uid://ccxouvwj8j50g"]
 
 [ext_resource type="Texture2D" uid="uid://cig6lm7ne073w" path="res://assets/Background/Background.png" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://dxhohy5do48ac" path="res://assets/Trees/Dark-Tree.png" id="2_7mycd"]
@@ -7,8 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://b7yw0mpspssr" path="res://assets/Trees/Green-Tree.png" id="3_272bh"]
 [ext_resource type="Texture2D" uid="uid://c6pr5w5svg2y" path="res://assets/Assets/Tiles.png" id="3_h2yge"]
 [ext_resource type="Texture2D" uid="uid://fi5hm8ti7njj" path="res://assets/Assets/Props-Rocks.png" id="4_5vw27"]
-[ext_resource type="PackedScene" uid="uid://83t4srov24l0" path="res://player.tscn" id="8_5vw27"]
-[ext_resource type="Script" uid="uid://dacuahq7nuv4a" path="res://player.gd" id="9_kek77"]
+[ext_resource type="PackedScene" uid="uid://83t4srov24l0" path="res://scenes/player.tscn" id="8_5vw27"]
+[ext_resource type="Script" uid="uid://dacuahq7nuv4a" path="res://scripts/player.gd" id="9_kek77"]
+[ext_resource type="PackedScene" uid="uid://b6xcs6sadofi7" path="res://scenes/card.tscn" id="10_4c57u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_272bh"]
 texture = ExtResource("2_272bh")
@@ -9928,6 +9929,7 @@ sources/2 = SubResource("TileSetAtlasSource_w48qg")
 [node name="Main" type="Node2D"]
 
 [node name="Background" type="Node2D" parent="."]
+position = Vector2(0, -45)
 metadata/_edit_group_ = true
 
 [node name="Background" type="Sprite2D" parent="Background"]
@@ -9979,5 +9981,8 @@ tile_set = SubResource("TileSet_h2yge")
 metadata/_edit_group_ = true
 
 [node name="Player" parent="." instance=ExtResource("8_5vw27")]
-position = Vector2(160, 280)
+position = Vector2(160, 235)
 script = ExtResource("9_kek77")
+
+[node name="Card" parent="." instance=ExtResource("10_4c57u")]
+position = Vector2(304, 184)
