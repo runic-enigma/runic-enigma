@@ -11,6 +11,15 @@ class_name Card extends Node2D
 @onready var description_label: Label = $CardDescription
 
 func _ready() -> void:
-	cost_label.set_text(str(card_cost))
-	name_label.set_text(card_name)
-	description_label.set_text(card_description)
+	set_values(card_cost, card_name, card_description)
+	hide()
+	
+func set_values(_cost: int, _name: String, _description: String) -> void:
+	card_name = _name
+	card_description = _description
+	card_cost = _cost
+	
+	cost_label.set_text(str(_cost))
+	name_label.set_text(_name)
+	description_label.set_text(_description)
+	
