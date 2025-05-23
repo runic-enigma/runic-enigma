@@ -7,15 +7,16 @@
 radius = 1000.0
 
 [node name="Hand" type="Node2D"]
-position = Vector2(-1, 0)
 script = ExtResource("1_eyfoh")
 hand_radius = 1000
-card_angle = -1.575
+card_angle = -1.571
+angle_limit = 0.523599
+max_card_spread_angle = 0.0280499
 
 [node name="TestCard" parent="." instance=ExtResource("2_cmdsa")]
 visible = false
-position = Vector2(-4.20366, -999.991)
-rotation = -0.00420367
+position = Vector2(-0.203673, -1000)
+rotation = -0.000203673
 scale = Vector2(0.3, 0.3)
 
 [node name="DebugShape" type="CollisionShape2D" parent="."]

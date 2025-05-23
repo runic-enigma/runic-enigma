@@ -1,14 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://erq8rp3ua1yy"]
+[gd_scene load_steps=3 format=3 uid="uid://erq8rp3ua1yy"]
 
 [ext_resource type="Script" uid="uid://ccj16ivpgl024" path="res://scripts/deck.gd" id="1_sdhao"]
+[ext_resource type="PackedScene" uid="uid://owvhgajlsjva" path="res://scenes/hand.tscn" id="2_6rnap"]
 
 [node name="Deck" type="Node2D"]
 script = ExtResource("1_sdhao")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Spawn" type="Node2D" parent="CanvasLayer"]
-position = Vector2(320, 192)
+[node name="Hand" parent="CanvasLayer" instance=ExtResource("2_6rnap")]
+position = Vector2(320, 1200)
+angle_limit = 0.196
+max_card_spread_angle = 0.196
 
 [node name="Button" type="Button" parent="."]
 offset_right = 8.0

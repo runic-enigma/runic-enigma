@@ -17,9 +17,11 @@ font_size = 14
 font_color = Color(0, 0, 0, 1)
 
 [node name="Card" type="Node2D"]
+scale = Vector2(0.4, 0.4)
 script = ExtResource("1_q5obu")
 
 [node name="BaseCardSprite" type="Sprite2D" parent="."]
+texture_filter = 1
 texture = ExtResource("1_rjlel")
 
 [node name="CostDisplay" type="Node2D" parent="."]
@@ -29,6 +31,7 @@ texture = ExtResource("1_rjlel")
 [node name="CostLabel" type="Label" parent="CostDisplay"]
 offset_right = 40.0
 offset_bottom = 23.0
+text = "1"
 label_settings = SubResource("LabelSettings_fpac0")
 
 [node name="CardName" type="Node2D" parent="."]
@@ -38,7 +41,7 @@ offset_left = -72.0
 offset_top = 64.0
 offset_right = 72.0
 offset_bottom = 87.0
-text = "Attack"
+text = "Card name"
 label_settings = SubResource("LabelSettings_1i5pp")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -52,7 +55,7 @@ offset_left = -64.0
 offset_top = 88.0
 offset_right = 72.0
 offset_bottom = 120.0
-text = "Attack +1"
+text = "Card Description"
 label_settings = SubResource("LabelSettings_pjytt")
 horizontal_alignment = 1
 vertical_alignment = 1
