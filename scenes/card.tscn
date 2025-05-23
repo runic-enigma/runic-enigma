@@ -1,0 +1,75 @@
+[gd_scene load_steps=8 format=3 uid="uid://b6xcs6sadofi7"]
+
+[ext_resource type="Script" uid="uid://cp1es8yjor0lb" path="res://scripts/card.gd" id="1_q5obu"]
+[ext_resource type="Texture2D" uid="uid://dsqptf0cxvd18" path="res://assets/Cards/Civilian_card_version3_pic2.png" id="1_rjlel"]
+[ext_resource type="FontFile" uid="uid://ckd63m8axmre5" path="res://assets/Fonts/C&C Red Alert [INET].ttf" id="3_e484p"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fpac0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1i5pp"]
+font = ExtResource("3_e484p")
+font_size = 18
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pjytt"]
+font = ExtResource("3_e484p")
+font_size = 14
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ktuci"]
+size = Vector2(190, 280)
+
+[node name="Card" type="Node2D"]
+scale = Vector2(0.4, 0.4)
+script = ExtResource("1_q5obu")
+
+[node name="BaseCardSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_rjlel")
+
+[node name="CostDisplay" type="Node2D" parent="."]
+
+[node name="CostBaseSprite" type="Sprite2D" parent="CostDisplay"]
+
+[node name="CostLabel" type="Label" parent="CostDisplay"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "1"
+label_settings = SubResource("LabelSettings_fpac0")
+
+[node name="CardName" type="Node2D" parent="."]
+
+[node name="NameLabel" type="Label" parent="CardName"]
+offset_left = -72.0
+offset_top = 64.0
+offset_right = 72.0
+offset_bottom = 87.0
+text = "Card name"
+label_settings = SubResource("LabelSettings_1i5pp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CardImage" type="Node2D" parent="."]
+
+[node name="CardImageSprite" type="Sprite2D" parent="CardImage"]
+
+[node name="CardDescription" type="Label" parent="."]
+offset_left = -64.0
+offset_top = 88.0
+offset_right = 72.0
+offset_bottom = 120.0
+text = "Card Description"
+label_settings = SubResource("LabelSettings_pjytt")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1.49012e-07, 1.62125e-05)
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_ktuci")
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
