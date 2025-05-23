@@ -4,7 +4,7 @@ class_name Card extends Node2D
 @export var card_description: String = "Card Description"
 @export var card_cost: int = 1
 # TODO: change card scene to template with different image
-@export var card_image: Node2D
+@export var card_image: Sprite2D
 
 @onready var cost_label: Label = $CostDisplay/CostLabel
 @onready var name_label: Label = $CardName/NameLabel
@@ -12,7 +12,6 @@ class_name Card extends Node2D
 
 func _ready() -> void:
 	set_values(card_cost, card_name, card_description)
-	hide()
 	
 func set_values(_cost: int, _name: String, _description: String) -> void:
 	card_name = _name
