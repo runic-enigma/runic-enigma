@@ -5,8 +5,8 @@
 [node name="AttackCard" type="Node2D"]
 
 [node name="Card" parent="." node_paths=PackedStringArray("card_image") instance=ExtResource("1_3ikgh")]
-card_name = "attack"
-card_description = "damage 1"
+card_name = "Attack"
+card_description = "Damage  1"
 card_image = NodePath("../CardImage")
 
 [node name="CardImage" type="Sprite2D" parent="."]

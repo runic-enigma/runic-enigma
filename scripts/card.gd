@@ -1,3 +1,4 @@
+@tool
 class_name Card extends Node2D
 
 @export var card_name: String = "Card name"
@@ -18,7 +19,15 @@ func set_values(_cost: int, _name: String, _description: String) -> void:
 	card_description = _description
 	card_cost = _cost
 	
-	cost_label.set_text(str(_cost))
-	name_label.set_text(_name)
-	description_label.set_text(_description)
+	_update_graphics()
 	
+func _update_graphics() -> void:
+	if cost_label.get_text() != str(card_cost):
+		cost_label.set_text(str(card_cost))
+	if name_label.get_text() != card_name:
+		name_label.set_text(card_name)
+	if description_label.get_text() != card_description:
+		description_label.set_text(card_description)
+
+func _process(delta: float) -> void:
+	_update_graphics()
