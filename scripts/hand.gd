@@ -11,7 +11,7 @@ class_name Hand extends Node2D
 
 var hand: Array = []
 var touched: Array = []
-var current_selected_card_idnex: int = -1
+var current_selected_card_index: int = -1
 
 func add_card(card: Node2D) -> void: 
 	hand.push_back(card)
@@ -23,6 +23,7 @@ func add_card(card: Node2D) -> void:
 func remove_card(index: int) -> Node2D:
 	var removing_card = hand[index]
 	hand.remove_at(index)
+	touched.remove_at(touched.find(removing_card))
 	remove_child(removing_card)
 	reposition_cards()
 	return removing_card
@@ -52,9 +53,15 @@ func _handle_card_untouched(card: Node2D):
 	var card_index = hand.find(card)
 	touched.remove_at(touched.find(card))
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("mouse_click") && current_selected_card_index >= 0:
+		remove_card(current_selected_card_index)
+		# TODO: Depending on what should we do with a card, maybe we could queue.free() now
+		current_selected_card_index = -1
+
 func _process(delta: float) -> void:
 	for card in hand:
-		current_selected_card_idnex = -1
+		current_selected_card_index = -1
 		card.unhighlight()
 	
 	if !touched.is_empty():
@@ -65,7 +72,7 @@ func _process(delta: float) -> void:
 			
 		if highest_touched_index >= 0 && highest_touched_index < hand.size():
 			hand[highest_touched_index].highlight()
-			current_selected_card_idnex = highest_touched_index
+			current_selected_card_index = highest_touched_index
 	
 	if (collision_shape.shape as CircleShape2D).radius != hand_radius:
 		(collision_shape.shape as CircleShape2D).set_radius(hand_radius)
