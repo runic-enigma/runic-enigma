@@ -4,7 +4,7 @@ extends Node2D
 @export var hand_radius: int = 100
 @export var card_angle: float = PI / 2
 
-@onready var test_card = $AttackCard
+@onready var test_card = $TestCard
 @onready var collision_shape: CollisionShape2D = $DebugShape
 
 # IMPORTANT: angle is in radians
@@ -19,3 +19,4 @@ func _process(delta: float) -> void:
 		(collision_shape.shape as CircleShape2D).set_radius(hand_radius)
 
 	test_card.set_position(get_card_position(card_angle))
+	test_card.set_rotation(card_angle + PI / 2)

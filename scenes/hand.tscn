@@ -4,14 +4,18 @@
 [ext_resource type="PackedScene" uid="uid://eofj4mpb832a" path="res://scenes/cards/attack_card.tscn" id="2_cmdsa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cmdsa"]
-radius = 100.0
+radius = 1000.0
 
 [node name="Hand" type="Node2D"]
+position = Vector2(-1, 0)
 script = ExtResource("1_eyfoh")
-card_angle = -1.571
+hand_radius = 1000
+card_angle = -1.575
 
-[node name="AttackCard" parent="." instance=ExtResource("2_cmdsa")]
-position = Vector2(-0.0203673, -100)
+[node name="TestCard" parent="." instance=ExtResource("2_cmdsa")]
+visible = false
+position = Vector2(-4.20366, -999.991)
+rotation = -0.00420367
 scale = Vector2(0.3, 0.3)
 
 [node name="DebugShape" type="CollisionShape2D" parent="."]
