@@ -1,6 +1,8 @@
 @tool
 class_name Hand extends Node2D
 
+signal card_activated(card: UsuableCard)
+
 @export var hand_radius: int = 100
 @export var card_angle: float = PI / 2
 @export var angle_limit: float = PI / 6
@@ -55,8 +57,9 @@ func _handle_card_untouched(card: Node2D):
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("mouse_click") && current_selected_card_index >= 0:
-		remove_card(current_selected_card_index)
+		var card = remove_card(current_selected_card_index)
 		# TODO: Depending on what should we do with a card, maybe we could queue.free() now
+		card_activated.emit(card)
 		current_selected_card_index = -1
 
 func _process(delta: float) -> void:

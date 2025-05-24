@@ -1,5 +1,6 @@
-[gd_scene load_steps=34 format=4 uid="uid://ccxouvwj8j50g"]
+[gd_scene load_steps=35 format=4 uid="uid://ccxouvwj8j50g"]
 
+[ext_resource type="Script" uid="uid://bxh8d741te6xe" path="res://scripts/main.gd" id="1_eb6dy"]
 [ext_resource type="Texture2D" uid="uid://cig6lm7ne073w" path="res://assets/Background/Background.png" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://dxhohy5do48ac" path="res://assets/Trees/Dark-Tree.png" id="2_7mycd"]
 [ext_resource type="Texture2D" uid="uid://dvlvjexbqymq6" path="res://assets/Trees/Background.png" id="2_272bh"]
@@ -9964,6 +9965,7 @@ animations = [{
 }]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_eb6dy")
 
 [node name="GameScreen" type="Node2D" parent="."]
 
@@ -10022,19 +10024,25 @@ metadata/_edit_group_ = true
 [node name="PlayerCharacter" parent="GameScreen" instance=ExtResource("8_5vw27")]
 position = Vector2(160, 235)
 script = ExtResource("9_ya4ey")
+mana = null
 
 [node name="EnemyCharacter" type="Node2D" parent="GameScreen"]
 position = Vector2(472, 248)
+script = ExtResource("9_ya4ey")
+mana = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GameScreen/EnemyCharacter"]
 sprite_frames = SubResource("SpriteFrames_jbj1t")
 
-[node name="ProgressBar" type="ProgressBar" parent="GameScreen/EnemyCharacter"]
+[node name="HealthBar" type="ProgressBar" parent="GameScreen/EnemyCharacter"]
 offset_left = -24.0
 offset_top = -32.0
 offset_right = 26.0
 offset_bottom = -28.0
-value = 100.0
+max_value = 10.0
+value = 10.0
 show_percentage = false
 
 [node name="Deck" parent="." instance=ExtResource("10_choun")]
+
+[connection signal="card_activated" from="Deck" to="." method="_on_deck_card_activated"]
