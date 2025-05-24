@@ -34,7 +34,6 @@ func _update_graphics() -> void:
 		description_label.set_text(card_description)
 
 func highlight():
-	print("happening")
 	base_sprite.set_modulate(Color(0.13,0.7,1, 1))
 
 func unhighlight():

@@ -6,10 +6,8 @@
 [node name="Deck" type="Node2D"]
 script = ExtResource("1_sdhao")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Hand" parent="CanvasLayer" instance=ExtResource("2_6rnap")]
-position = Vector2(320, 1200)
+[node name="Hand" parent="." instance=ExtResource("2_6rnap")]
+position = Vector2(320, 1300)
 angle_limit = 0.524
 max_card_spread_angle = 0.196
 
@@ -25,5 +23,6 @@ offset_bottom = 71.0
 text = "Create Card 2
 "
 
+[connection signal="card_activated" from="Hand" to="." method="_on_hand_card_activated"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
