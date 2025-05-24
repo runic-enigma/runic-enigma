@@ -9,7 +9,7 @@ script = ExtResource("1_sdhao")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Hand" parent="CanvasLayer" instance=ExtResource("2_6rnap")]
-position = Vector2(320, 1200)
+position = Vector2(320, 1300)
 angle_limit = 0.524
 max_card_spread_angle = 0.196
 
