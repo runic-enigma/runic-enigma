@@ -4,13 +4,14 @@ signal mouse_entered(card: Card)
 signal mouse_exited(card: Card)
 
 @export var action: Node2D
-
 func highlight():
-	print("Heeeelooo")
 	$Card.highlight()
 	
 func unhighlight():
 	$Card.unhighlight()
+
+func get_cost() -> int:
+	return $Card.card_cost
 
 func _on_card_mouse_entered(card: Card) -> void:
 	mouse_entered.emit(self)

@@ -1,9 +1,11 @@
-[gd_scene load_steps=35 format=4 uid="uid://ccxouvwj8j50g"]
+[gd_scene load_steps=38 format=4 uid="uid://ccxouvwj8j50g"]
 
 [ext_resource type="Script" uid="uid://bxh8d741te6xe" path="res://scripts/main.gd" id="1_eb6dy"]
 [ext_resource type="Texture2D" uid="uid://cig6lm7ne073w" path="res://assets/Background/Background.png" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://dxhohy5do48ac" path="res://assets/Trees/Dark-Tree.png" id="2_7mycd"]
 [ext_resource type="Texture2D" uid="uid://dvlvjexbqymq6" path="res://assets/Trees/Background.png" id="2_272bh"]
+[ext_resource type="FontFile" uid="uid://ckd63m8axmre5" path="res://assets/Fonts/C&C Red Alert [INET].ttf" id="2_a8y0u"]
+[ext_resource type="Script" uid="uid://cju48ejexktsl" path="res://scripts/game_controller.gd" id="2_trceg"]
 [ext_resource type="Texture2D" uid="uid://cgs5ksdrwal8o" path="res://assets/Assets/Tree-Assets.png" id="3_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://b7yw0mpspssr" path="res://assets/Trees/Green-Tree.png" id="3_272bh"]
 [ext_resource type="Texture2D" uid="uid://c6pr5w5svg2y" path="res://assets/Assets/Tiles.png" id="3_h2yge"]
@@ -12,6 +14,11 @@
 [ext_resource type="Script" uid="uid://b1dfwur10p0qm" path="res://scripts/character.gd" id="9_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://erq8rp3ua1yy" path="res://scenes/deck.tscn" id="10_choun"]
 [ext_resource type="Texture2D" uid="uid://dsy6kktmmgb30" path="res://assets/Mob/Boar/Idle/Idle-Sheet.png" id="10_ya4ey"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jkv2x"]
+font = ExtResource("2_a8y0u")
+font_size = 64
+font_color = Color(1, 0, 0.0166664, 1)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_272bh"]
 texture = ExtResource("2_272bh")
@@ -9967,6 +9974,60 @@ animations = [{
 [node name="Main" type="Node2D"]
 script = ExtResource("1_eb6dy")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameOverOverlay" type="ColorRect" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.02, 0.0690002, 0.301961)
+
+[node name="Label" type="Label" parent="CanvasLayer/GameOverOverlay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.0
+offset_top = -11.5
+offset_right = 27.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Game over"
+label_settings = SubResource("LabelSettings_jkv2x")
+
+[node name="VictoryOverlay" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.404167, 1, 0.35, 0.431373)
+
+[node name="Label" type="Label" parent="CanvasLayer/VictoryOverlay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.0
+offset_top = -11.5
+offset_right = 27.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Victory"
+label_settings = SubResource("LabelSettings_jkv2x")
+
+[node name="GameController" type="Node2D" parent="."]
+script = ExtResource("2_trceg")
+
 [node name="GameScreen" type="Node2D" parent="."]
 
 [node name="Background" type="Node2D" parent="GameScreen"]
@@ -10024,12 +10085,10 @@ metadata/_edit_group_ = true
 [node name="PlayerCharacter" parent="GameScreen" instance=ExtResource("8_5vw27")]
 position = Vector2(160, 235)
 script = ExtResource("9_ya4ey")
-mana = null
 
 [node name="EnemyCharacter" type="Node2D" parent="GameScreen"]
 position = Vector2(472, 248)
 script = ExtResource("9_ya4ey")
-mana = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GameScreen/EnemyCharacter"]
 sprite_frames = SubResource("SpriteFrames_jbj1t")
@@ -10045,4 +10104,19 @@ show_percentage = false
 
 [node name="Deck" parent="." instance=ExtResource("10_choun")]
 
+[node name="ManaAmount" type="Label" parent="."]
+offset_left = 152.0
+offset_top = 176.0
+offset_right = 192.0
+offset_bottom = 225.0
+text = "3"
+
+[node name="EndTurn" type="Button" parent="."]
+offset_left = 288.0
+offset_top = 8.0
+offset_right = 366.0
+offset_bottom = 39.0
+text = "End Turn"
+
 [connection signal="card_activated" from="Deck" to="." method="_on_deck_card_activated"]
+[connection signal="pressed" from="EndTurn" to="." method="_on_end_turn_pressed"]

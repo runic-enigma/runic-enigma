@@ -15,6 +15,13 @@ var hand: Array = []
 var touched: Array = []
 var current_selected_card_index: int = -1
 
+func empty_hand():
+	current_selected_card_index = -1
+	for card in hand:
+		card.queue_free()
+	hand = []
+	touched = []
+	
 func add_card(card: Node2D) -> void: 
 	hand.push_back(card)
 	add_child(card)
@@ -29,6 +36,10 @@ func remove_card(index: int) -> Node2D:
 	remove_child(removing_card)
 	reposition_cards()
 	return removing_card
+	
+func remove_card_by_entity(card: Node2D):
+	var remove_index = hand.find(card)
+	remove_card(remove_index)
 	
 func reposition_cards():
 	var card_spread = min(angle_limit, max_card_spread_angle) / hand.size()
@@ -57,7 +68,7 @@ func _handle_card_untouched(card: Node2D):
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("mouse_click") && current_selected_card_index >= 0:
-		var card = remove_card(current_selected_card_index)
+		var card = hand[current_selected_card_index]
 		# TODO: Depending on what should we do with a card, maybe we could queue.free() now
 		card_activated.emit(card)
 		current_selected_card_index = -1

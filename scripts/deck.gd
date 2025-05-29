@@ -7,6 +7,12 @@ signal card_activated(card: UsuableCard)
 
 @onready var hand: Hand = $Hand
 
+func reset():
+	$Hand.empty_hand()
+
+func remove_card(card: Node2D):
+	$Hand.remove_card_by_entity(card)
+
 func _on_button_pressed() -> void:
 	var attack_card = attack_card_scene.instantiate()
 	hand.add_card(attack_card)
