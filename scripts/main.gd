@@ -1,8 +1,11 @@
 extends Node2D
 
 @onready var game_control: GameController = $GameController
+@onready var deck_view_window: DeckViewWindow = $CanvasLayer/DeckViewWindow as DeckViewWindow
 
 var enemy_character_state: int = 0
+
+@onready var deck: Deck = Deck.new()
 
 func restart_game():
 	game_control.current_state = GameController.GameState.PLAYER_TURN
@@ -10,7 +13,13 @@ func restart_game():
 	$GameScreen/EnemyCharacter.reset()
 	$Deck.reset()
 	
+func _ready():
+	$Deck.deck = deck
+	
 func _process(delta: float) -> void:
+	if !game_control.is_running:
+		return
+	
 	$ManaAmount.set_text(str($GameScreen/PlayerCharacter.mana))
 	
 	if $GameScreen/PlayerCharacter.health <= 0:
@@ -62,3 +71,9 @@ func _on_end_turn_pressed() -> void:
 		game_control.transition(GameController.GameState.ENEMY_TURN)
 		$GameScreen/EnemyCharacter.start_turn()
 	pass # Replace with function body.
+
+
+func _on_deck_button_pressed() -> void:
+	game_control.pause()
+	deck_view_window.show()
+	deck_view_window.display_card_list(deck.get_cards())

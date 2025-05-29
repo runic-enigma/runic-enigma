@@ -2,6 +2,8 @@ extends Node2D
 
 signal card_activated(card: UsuableCard)
 
+@export var deck: Deck
+
 @onready var attack_card_scene: PackedScene = preload("res://scenes/cards/attack_card.tscn")
 @onready var defend_card_scene: PackedScene = preload("res://scenes/cards/defend_card.tscn")
 
@@ -15,13 +17,21 @@ func remove_card(card: Node2D):
 
 func _on_button_pressed() -> void:
 	var attack_card = attack_card_scene.instantiate()
-	hand.add_card(attack_card)
+	deck.add_card(attack_card)
 
 
 func _on_button_2_pressed() -> void:
 	var defend_card = defend_card_scene.instantiate()
-	hand.add_card(defend_card)
+	deck.add_card(defend_card)
 
 
 func _on_hand_card_activated(card: UsuableCard) -> void:
 	card_activated.emit(card)
+
+
+func _on_button_3_pressed() -> void:
+	if deck.get_cards().is_empty():
+		return
+		
+	var random_card: CardWithId = deck.get_cards().pick_random()
+	deck.remove_card(random_card.id)

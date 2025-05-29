@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dueu6b5nh50co"]
+
+[ext_resource type="Script" uid="uid://o42d16nplsyv" path="res://scripts/ui/card_container.gd" id="1_wau5o"]
+
+[node name="CardContainer" type="Container"]
+custom_minimum_size = Vector2(85, 120)
+script = ExtResource("1_wau5o")

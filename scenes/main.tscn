@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://ccxouvwj8j50g"]
+[gd_scene load_steps=39 format=4 uid="uid://ccxouvwj8j50g"]
 
 [ext_resource type="Script" uid="uid://bxh8d741te6xe" path="res://scripts/main.gd" id="1_eb6dy"]
 [ext_resource type="Texture2D" uid="uid://cig6lm7ne073w" path="res://assets/Background/Background.png" id="1_ig7tw"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cgs5ksdrwal8o" path="res://assets/Assets/Tree-Assets.png" id="3_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://b7yw0mpspssr" path="res://assets/Trees/Green-Tree.png" id="3_272bh"]
 [ext_resource type="Texture2D" uid="uid://c6pr5w5svg2y" path="res://assets/Assets/Tiles.png" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://bbh5htfm2ff8w" path="res://scenes/ui/deck_view_window.tscn" id="3_jkv2x"]
 [ext_resource type="Texture2D" uid="uid://fi5hm8ti7njj" path="res://assets/Assets/Props-Rocks.png" id="4_5vw27"]
 [ext_resource type="PackedScene" uid="uid://83t4srov24l0" path="res://scenes/player_character.tscn" id="8_5vw27"]
 [ext_resource type="Script" uid="uid://b1dfwur10p0qm" path="res://scripts/character.gd" id="9_ya4ey"]
@@ -10002,6 +10003,7 @@ text = "Game over"
 label_settings = SubResource("LabelSettings_jkv2x")
 
 [node name="VictoryOverlay" type="ColorRect" parent="CanvasLayer"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -10024,6 +10026,15 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Victory"
 label_settings = SubResource("LabelSettings_jkv2x")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
+offset_left = 72.0
+offset_top = 32.0
+offset_right = 572.0
+offset_bottom = 332.0
+
+[node name="DeckViewWindow" parent="CanvasLayer" instance=ExtResource("3_jkv2x")]
 
 [node name="GameController" type="Node2D" parent="."]
 script = ExtResource("2_trceg")
@@ -10118,5 +10129,13 @@ offset_right = 366.0
 offset_bottom = 39.0
 text = "End Turn"
 
+[node name="DeckButton" type="Button" parent="."]
+offset_left = 16.0
+offset_top = 312.0
+offset_right = 107.0
+offset_bottom = 343.0
+text = "Open deck"
+
 [connection signal="card_activated" from="Deck" to="." method="_on_deck_card_activated"]
 [connection signal="pressed" from="EndTurn" to="." method="_on_end_turn_pressed"]
+[connection signal="pressed" from="DeckButton" to="." method="_on_deck_button_pressed"]
