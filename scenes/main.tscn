@@ -10115,7 +10115,6 @@ value = 10.0
 show_percentage = false
 
 [node name="Deck" parent="." instance=ExtResource("10_choun")]
-debug_mode = true
 
 [node name="ManaAmount" type="Label" parent="."]
 offset_left = 152.0
