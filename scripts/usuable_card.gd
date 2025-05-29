@@ -3,7 +3,19 @@ class_name UsuableCard extends Node2D
 signal mouse_entered(card: Card)
 signal mouse_exited(card: Card)
 
-@export var action: Node2D
+var actions: Array[RefCounted]
+
+@onready var card: Card = $Card
+@onready var card_image: Sprite2D = $CardImage
+
+func load_card_data(card_data: CardData):
+	card.set_values(card_data.cost, card_data.name, card_data.description)
+	card_image.set_texture(card_data.texture)
+	for script in card_data.actions:
+		var action_script = RefCounted.new()
+		action_script.set_script(script)
+		actions.push_back(action_script)
+
 func highlight():
 	$Card.highlight()
 	
@@ -20,4 +32,5 @@ func _on_card_mouse_exited(card: Card) -> void:
 	mouse_exited.emit(self)
 
 func activate(game_state: Dictionary) -> void:
-	action.activate(game_state)
+	for action in actions:
+		action.activate(game_state)

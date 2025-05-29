@@ -1,9 +1,9 @@
-class_name CardWithId extends RefCounted
+class_name CardWithId extends Resource
 
 var id: int
-var card: UsuableCard
+var card: CardData
 
-func _init(_id: int, _card: UsuableCard):
+func _init(_id: int, _card: CardData):
 	id = _id
 	card = _card
 	
