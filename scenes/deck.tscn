@@ -23,6 +23,14 @@ offset_bottom = 71.0
 text = "Create Card 2
 "
 
+[node name="Button3" type="Button" parent="."]
+offset_top = 80.0
+offset_right = 109.0
+offset_bottom = 111.0
+text = "Remove card
+"
+
 [connection signal="card_activated" from="Hand" to="." method="_on_hand_card_activated"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]

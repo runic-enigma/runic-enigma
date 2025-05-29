@@ -2,26 +2,46 @@ extends Node2D
 
 signal card_activated(card: UsuableCard)
 
-@onready var attack_card_scene: PackedScene = preload("res://scenes/cards/attack_card.tscn")
-@onready var defend_card_scene: PackedScene = preload("res://scenes/cards/defend_card.tscn")
+@export var deck: Deck
+@export var debug_mode: bool = true:
+	set(value):
+		if !is_node_ready():
+			await ready
+		debug_mode = value
+		$Button.visible = debug_mode
+		$Button2.visible = debug_mode
+		$Button3.visible = debug_mode
+
+@onready var attack_card_data: CardData = preload("res://card_data/attack_card.tres")
 
 @onready var hand: Hand = $Hand
 
 func reset():
 	$Hand.empty_hand()
+	
+func add_card(card_with_id: CardWithId):
+	$Hand.add_card(card_with_id.card)
 
 func remove_card(card: Node2D):
 	$Hand.remove_card_by_entity(card)
 
 func _on_button_pressed() -> void:
-	var attack_card = attack_card_scene.instantiate()
-	hand.add_card(attack_card)
+	deck.add_card(attack_card_data.duplicate())
 
 
 func _on_button_2_pressed() -> void:
-	var defend_card = defend_card_scene.instantiate()
-	hand.add_card(defend_card)
+	#var defend_card = defend_card_scene.instantiate()
+	pass
+	#deck.add_card(defend_card)
 
 
 func _on_hand_card_activated(card: UsuableCard) -> void:
 	card_activated.emit(card)
+
+
+func _on_button_3_pressed() -> void:
+	if deck.get_cards().is_empty():
+		return
+		
+	var random_card: CardWithId = deck.get_cards().pick_random()
+	deck.remove_card(random_card.id)
