@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_nonoi")
-name = ""
+name = "Attack"
 description = "damage 1"
 cost = 1
 actions = Array[GDScript]([ExtResource("1_5ik2q")])

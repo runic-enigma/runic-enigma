@@ -10146,7 +10146,6 @@ text = "Start New Game
 "
 
 [node name="PlayableDeckUi" parent="." instance=ExtResource("16_jbj1t")]
-visible = false
 offset_left = 536.0
 offset_top = 224.0
 offset_right = 731.0
