@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://b6xcs6sadofi7"]
+[gd_scene load_steps=9 format=3 uid="uid://b6xcs6sadofi7"]
 
 [ext_resource type="Script" uid="uid://cp1es8yjor0lb" path="res://scripts/card.gd" id="1_q5obu"]
-[ext_resource type="Texture2D" uid="uid://dsqptf0cxvd18" path="res://assets/Cards/Civilian_card_version3_pic2.png" id="1_rjlel"]
+[ext_resource type="Texture2D" uid="uid://cxk7f8qhabxhs" path="res://assets/Cards/CardSchema.png" id="2_kg30u"]
+[ext_resource type="Texture2D" uid="uid://8qbqjdnyc6ww" path="res://assets/Cards/Backgrounds/Background1.png" id="2_ktuci"]
 [ext_resource type="FontFile" uid="uid://ckd63m8axmre5" path="res://assets/Fonts/C&C Red Alert [INET].ttf" id="3_e484p"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_fpac0"]
@@ -23,40 +24,45 @@ size = Vector2(190, 280)
 scale = Vector2(0.4, 0.4)
 script = ExtResource("1_q5obu")
 
-[node name="BaseCardSprite" type="Sprite2D" parent="."]
-texture_filter = 1
-texture = ExtResource("1_rjlel")
+[node name="CardImage" type="Node2D" parent="."]
+scale = Vector2(1, 1)
+
+[node name="CardBackground" type="Sprite2D" parent="CardImage"]
+position = Vector2(0, -67.5)
+scale = Vector2(1, 1)
+texture = ExtResource("2_ktuci")
+
+[node name="CardSchema" type="Sprite2D" parent="CardImage"]
+scale = Vector2(1, 1)
+texture = ExtResource("2_kg30u")
 
 [node name="CostDisplay" type="Node2D" parent="."]
 
-[node name="CostBaseSprite" type="Sprite2D" parent="CostDisplay"]
-
 [node name="CostLabel" type="Label" parent="CostDisplay"]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = -12.5
+offset_top = 30.0
+offset_right = 27.5
+offset_bottom = 53.0
 text = "1"
 label_settings = SubResource("LabelSettings_fpac0")
 
-[node name="CardName" type="Node2D" parent="."]
+[node name="CardText" type="Node2D" parent="."]
 
-[node name="NameLabel" type="Label" parent="CardName"]
+[node name="NameLabel" type="Label" parent="CardText"]
 offset_left = -72.0
-offset_top = 64.0
+offset_top = 8.0
 offset_right = 72.0
-offset_bottom = 87.0
+offset_bottom = 31.0
+rotation = -0.10472
 text = "Card name"
 label_settings = SubResource("LabelSettings_1i5pp")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CardImage" type="Node2D" parent="."]
-
-[node name="CardImageSprite" type="Sprite2D" parent="CardImage"]
-
-[node name="CardDescription" type="Label" parent="."]
-offset_left = -64.0
-offset_top = 88.0
-offset_right = 72.0
+[node name="CardDescription" type="Label" parent="CardText"]
+offset_left = -66.0
+offset_top = 58.0
+offset_right = 70.0
 offset_bottom = 120.0
 text = "Card Description"
 label_settings = SubResource("LabelSettings_pjytt")

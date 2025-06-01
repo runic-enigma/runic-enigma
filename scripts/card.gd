@@ -7,13 +7,13 @@ signal mouse_exited(card: Card)
 @export var card_name: String = "Card name"
 @export var card_description: String = "Card Description"
 @export var card_cost: int = 1
-# TODO: change card scene to template with different image
-@export var card_image: Sprite2D
+@export var card_background: Sprite2D
 
 @onready var cost_label: Label = $CostDisplay/CostLabel
-@onready var name_label: Label = $CardName/NameLabel
-@onready var description_label: Label = $CardDescription
-@onready var base_sprite: Sprite2D = $BaseCardSprite
+@onready var name_label: Label = $CardText/NameLabel
+@onready var description_label: Label = $CardText/CardDescription
+@onready var background_sprite: Sprite2D = $CardImage/CardBackground
+@onready var card_sprite: Sprite2D = $CardImage/CardSchema
 
 func _ready() -> void:
 	set_values(card_cost, card_name, card_description)
@@ -22,7 +22,6 @@ func set_values(_cost: int, _name: String, _description: String) -> void:
 	card_name = _name
 	card_description = _description
 	card_cost = _cost
-	
 	_update_graphics()
 	
 func _update_graphics() -> void:
@@ -34,10 +33,10 @@ func _update_graphics() -> void:
 		description_label.set_text(card_description)
 
 func highlight():
-	base_sprite.set_modulate(Color(0.13,0.7,1, 1))
+	card_sprite.set_modulate(Color(0.13,0.7,1, 1))
 
 func unhighlight():
-	base_sprite.set_modulate(Color(1,1,1,1))
+	card_sprite.set_modulate(Color(1,1,1,1))
 
 func activate():
 	pass
