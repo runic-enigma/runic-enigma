@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://ccxouvwj8j50g"]
+[gd_scene load_steps=39 format=4 uid="uid://ccxouvwj8j50g"]
 
 [ext_resource type="Script" uid="uid://bxh8d741te6xe" path="res://scripts/main.gd" id="1_eb6dy"]
 [ext_resource type="Texture2D" uid="uid://cig6lm7ne073w" path="res://assets/Background/Background.png" id="1_ig7tw"]
@@ -15,7 +15,6 @@
 [ext_resource type="Script" uid="uid://b1dfwur10p0qm" path="res://scripts/character.gd" id="9_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://erq8rp3ua1yy" path="res://scenes/deck.tscn" id="10_choun"]
 [ext_resource type="Texture2D" uid="uid://dsy6kktmmgb30" path="res://assets/Mob/Boar/Idle/Idle-Sheet.png" id="10_ya4ey"]
-[ext_resource type="PackedScene" uid="uid://dludy37l85p7o" path="res://scenes/ui/playable_deck_ui.tscn" id="16_jbj1t"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jkv2x"]
 font = ExtResource("2_a8y0u")
@@ -10145,16 +10144,7 @@ offset_bottom = 39.0
 text = "Start New Game
 "
 
-[node name="PlayableDeckUi" parent="." instance=ExtResource("16_jbj1t")]
-offset_left = 536.0
-offset_top = 224.0
-offset_right = 731.0
-offset_bottom = 508.0
-scale = Vector2(0.4, 0.4)
-texture_normal = null
-
 [connection signal="card_activated" from="Deck" to="." method="_on_deck_card_activated"]
 [connection signal="pressed" from="EndTurn" to="." method="_on_end_turn_pressed"]
 [connection signal="pressed" from="DeckButton" to="." method="_on_deck_button_pressed"]
 [connection signal="pressed" from="StartGame" to="." method="_on_start_game_pressed"]
-[connection signal="pressed" from="PlayableDeckUi" to="." method="_on_playable_deck_ui_pressed"]
