@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://dqybthyupplyv"]
+
+[ext_resource type="Script" uid="uid://dqao6x87fh2lc" path="res://scripts/game_objects/card_data.gd" id="1_gopvg"]
+[ext_resource type="Texture2D" uid="uid://bgny0jye636r2" path="res://assets/Cards/Backgrounds/Background3.png" id="2_fdccw"]
+
+[resource]
+script = ExtResource("1_gopvg")
+name = "Frost bolt"
+description = "Deal 1 dmg"
+cost = 1
+texture = ExtResource("2_fdccw")
+actions = Array[GDScript]([])
+metadata/_custom_type_script = "uid://dqao6x87fh2lc"

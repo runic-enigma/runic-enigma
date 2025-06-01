@@ -12,8 +12,8 @@ signal mouse_exited(card: Card)
 @onready var cost_label: Label = $CostDisplay/CostLabel
 @onready var name_label: Label = $CardText/NameLabel
 @onready var description_label: Label = $CardText/CardDescription
-@onready var background_sprite: Sprite2D = $CardImage/CardBackground
-@onready var card_sprite: Sprite2D = $CardImage/CardSchema
+@onready var background_sprite: Sprite2D = $CardSchema
+@onready var card_sprite: Sprite2D = $CardImage/CardImage
 
 func _ready() -> void:
 	set_values(card_cost, card_name, card_description)

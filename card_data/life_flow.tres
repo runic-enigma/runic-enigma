@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3 uid="uid://cmdfwpfbdsqmm"]
+
+[ext_resource type="Script" uid="uid://qfrq6dduw6el" path="res://scripts/attack_action.gd" id="1_qj3mm"]
+[ext_resource type="Script" uid="uid://dqao6x87fh2lc" path="res://scripts/game_objects/card_data.gd" id="2_fi55r"]
+[ext_resource type="Texture2D" uid="uid://8qbqjdnyc6ww" path="res://assets/Cards/Backgrounds/Background1.png" id="3_wfuac"]
+
+[resource]
+script = ExtResource("2_fi55r")
+name = "Life flow"
+description = "Restore 2 hp"
+cost = 2
+texture = ExtResource("3_wfuac")
+actions = Array[GDScript]([ExtResource("1_qj3mm")])
+metadata/_custom_type_script = "uid://dqao6x87fh2lc"

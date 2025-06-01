@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://b0nl4swrw3471"]
+
+[ext_resource type="Script" uid="uid://dqao6x87fh2lc" path="res://scripts/game_objects/card_data.gd" id="1_lt1ye"]
+[ext_resource type="Texture2D" uid="uid://0bi0n1jxaslk" path="res://assets/Cards/Backgrounds/Background5.png" id="2_1wqbi"]
+
+[resource]
+script = ExtResource("1_lt1ye")
+name = "Shield block"
+description = "Gain 1 armor"
+cost = 1
+texture = ExtResource("2_1wqbi")
+actions = Array[GDScript]([])
+metadata/_custom_type_script = "uid://dqao6x87fh2lc"

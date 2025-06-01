@@ -12,7 +12,7 @@ signal card_activated(card: UsuableCard)
 		$Button2.visible = debug_mode
 		$Button3.visible = debug_mode
 
-@onready var attack_card_data: CardData = preload("res://card_data/attack_card.tres")
+@onready var fire_ball: CardData = preload("res://card_data/fire_ball.tres")
 
 @onready var hand: Hand = $Hand
 
@@ -26,7 +26,7 @@ func remove_card(card: Node2D):
 	$Hand.remove_card_by_entity(card)
 
 func _on_button_pressed() -> void:
-	deck.add_card(attack_card_data.duplicate())
+	deck.add_card(fire_ball.duplicate())
 
 
 func _on_button_2_pressed() -> void:

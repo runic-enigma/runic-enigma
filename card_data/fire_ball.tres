@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://88g76qktmpwc"]
+
+[ext_resource type="Script" uid="uid://dqao6x87fh2lc" path="res://scripts/game_objects/card_data.gd" id="1_bcg4c"]
+[ext_resource type="Texture2D" uid="uid://c2epiosmxgq44" path="res://assets/Cards/Backgrounds/Background2.png" id="2_l0kmc"]
+
+[resource]
+script = ExtResource("1_bcg4c")
+name = "Fire ball"
+description = "Deal 2 dmg"
+cost = 2
+texture = ExtResource("2_l0kmc")
+actions = Array[GDScript]([])
+metadata/_custom_type_script = "uid://dqao6x87fh2lc"
