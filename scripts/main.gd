@@ -9,20 +9,42 @@ extends Node2D
 
 @onready var game_control: GameController = $GameController
 @onready var deck_view_window: DeckViewWindow = $CanvasLayer/DeckViewWindow as DeckViewWindow
-@onready var deck_ui: PlayableDeckUI = $PlayableDeckUi
 @onready var deck_with_hand: Node2D = $Deck
 
 var enemy_character_state: int = 0
 
+@onready var attack_card_data: CardData = preload("res://card_data/attack_card.tres")
+
 @onready var deck: Deck = Deck.new()
+
+var playableDeck: PlayableDeck
 
 func restart_game():
 	game_control.current_state = GameController.GameState.PLAYER_TURN
 	$GameScreen/PlayerCharacter.reset()
 	$GameScreen/EnemyCharacter.reset()
 	deck_with_hand.reset()
-	deck_ui.deck = deck.get_playable_deck()
-	deck_ui.show()
+	deck = Deck.new()
+	deck.add_card(attack_card_data)
+	deck.add_card(attack_card_data)
+	deck.add_card(attack_card_data)
+	deck.add_card(attack_card_data)
+	deck.add_card(attack_card_data)
+	deck.add_card(attack_card_data)
+	deck.add_card(attack_card_data)
+	deck.add_card(attack_card_data)
+	deck.add_card(attack_card_data)
+	deck.add_card(attack_card_data)
+	playableDeck = deck.get_playable_deck()
+	
+	deck_with_hand.add_card(playableDeck.draw_card())
+	deck_with_hand.add_card(playableDeck.draw_card())
+	deck_with_hand.add_card(playableDeck.draw_card())
+	deck_with_hand.add_card(playableDeck.draw_card())
+	deck_with_hand.add_card(playableDeck.draw_card())
+	deck_with_hand.add_card(playableDeck.draw_card())
+	deck_with_hand.add_card(playableDeck.draw_card())
+	deck_with_hand.add_card(playableDeck.draw_card())
 	
 func _ready():
 	deck_with_hand.deck = deck
@@ -49,6 +71,11 @@ func _process(delta: float) -> void:
 
 		enemy_character_state = posmod(enemy_character_state + 1, 3)
 		game_control.transition(GameController.GameState.PLAYER_TURN)
+		var card_with_id = playableDeck.draw_card()
+		
+		if card_with_id:
+			deck_with_hand.add_card(card_with_id)
+		
 		$GameScreen/PlayerCharacter.start_turn()
 		
 	if game_control.current_state == GameController.GameState.VICTORY:
@@ -93,9 +120,3 @@ func _on_deck_button_pressed() -> void:
 
 func _on_start_game_pressed() -> void:
 	restart_game()
-
-func _on_playable_deck_ui_pressed() -> void:
-	var card_with_id = deck_ui.draw()
-	
-	if card_with_id:
-		deck_with_hand.add_card(card_with_id)
