@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://cbtn0qirm676q"]
+
+[ext_resource type="Script" uid="uid://dqao6x87fh2lc" path="res://scripts/game_objects/card_data.gd" id="1_fhy4l"]
+[ext_resource type="Texture2D" uid="uid://byly8kbom5svq" path="res://assets/Cards/Backgrounds/Background4.png" id="2_8u5ma"]
+
+[resource]
+script = ExtResource("1_fhy4l")
+name = "Berry bush"
+description = "Restore 1 life"
+cost = 1
+texture = ExtResource("2_8u5ma")
+actions = Array[GDScript]([])
+metadata/_custom_type_script = "uid://dqao6x87fh2lc"

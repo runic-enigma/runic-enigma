@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsqptf0cxvd18"
-path="res://.godot/imported/Civilian_card_version3_pic2.png-e63c7f5f407df81f3298788d533004a2.ctex"
+uid="uid://chcwhdf7d03ie"
+path="res://.godot/imported/Chest.png-3c1ed346859cf83d820161eef18f7a6c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Cards/Civilian_card_version3_pic2.png"
-dest_files=["res://.godot/imported/Civilian_card_version3_pic2.png-e63c7f5f407df81f3298788d533004a2.ctex"]
+source_file="res://assets/Assets/Chest.png"
+dest_files=["res://.godot/imported/Chest.png-3c1ed346859cf83d820161eef18f7a6c.ctex"]
 
 [params]
 

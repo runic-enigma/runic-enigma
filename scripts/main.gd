@@ -13,7 +13,11 @@ extends Node2D
 
 var enemy_character_state: int = 0
 
-@onready var attack_card_data: CardData = preload("res://card_data/attack_card.tres")
+@onready var berry_bush: CardData = preload("res://card_data/berry_bush.tres")
+@onready var fire_ball: CardData = preload("res://card_data/fire_ball.tres")
+@onready var frost_bolt = preload("res://card_data/frost_bolt.tres")
+@onready var life_flow = preload("res://card_data/life_flow.tres")
+@onready var shield_block = preload("res://card_data/shield_block.tres")
 
 @onready var deck: Deck = Deck.new()
 
@@ -25,21 +29,13 @@ func restart_game():
 	$GameScreen/EnemyCharacter.reset()
 	deck_with_hand.reset()
 	deck = Deck.new()
-	deck.add_card(attack_card_data)
-	deck.add_card(attack_card_data)
-	deck.add_card(attack_card_data)
-	deck.add_card(attack_card_data)
-	deck.add_card(attack_card_data)
-	deck.add_card(attack_card_data)
-	deck.add_card(attack_card_data)
-	deck.add_card(attack_card_data)
-	deck.add_card(attack_card_data)
-	deck.add_card(attack_card_data)
+	deck.add_card(berry_bush)
+	deck.add_card(fire_ball)
+	deck.add_card(frost_bolt)
+	deck.add_card(life_flow)
+	deck.add_card(shield_block)
 	playableDeck = deck.get_playable_deck()
 	
-	deck_with_hand.add_card(playableDeck.draw_card())
-	deck_with_hand.add_card(playableDeck.draw_card())
-	deck_with_hand.add_card(playableDeck.draw_card())
 	deck_with_hand.add_card(playableDeck.draw_card())
 	deck_with_hand.add_card(playableDeck.draw_card())
 	deck_with_hand.add_card(playableDeck.draw_card())
