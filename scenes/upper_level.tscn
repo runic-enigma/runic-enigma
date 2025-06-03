@@ -10097,6 +10097,24 @@ metadata/_edit_group_ = true
 position = Vector2(160, 235)
 script = ExtResource("13_d05tn")
 
+[node name="EnemyCharacter2" type="Node2D" parent="GameScreen"]
+position = Vector2(532, 249)
+script = ExtResource("13_d05tn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GameScreen/EnemyCharacter2"]
+position = Vector2(0, -2)
+sprite_frames = SubResource("SpriteFrames_jbj1t")
+
+[node name="HealthBar" type="ProgressBar" parent="GameScreen/EnemyCharacter2"]
+offset_left = -24.0
+offset_top = -34.0
+offset_right = 26.0
+offset_bottom = -30.0
+max_value = 10.0
+value = 10.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
 [node name="EnemyCharacter" type="Node2D" parent="GameScreen"]
 position = Vector2(472, 248)
 script = ExtResource("13_d05tn")
@@ -10112,24 +10130,6 @@ offset_bottom = -29.0
 max_value = 10.0
 value = 10.0
 show_percentage = false
-
-[node name="EnemyCharacter" type="Node2D" parent="GameScreen/EnemyCharacter"]
-position = Vector2(60, 1)
-script = ExtResource("13_d05tn")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GameScreen/EnemyCharacter/EnemyCharacter"]
-position = Vector2(0, -2)
-sprite_frames = SubResource("SpriteFrames_jbj1t")
-
-[node name="HealthBar" type="ProgressBar" parent="GameScreen/EnemyCharacter/EnemyCharacter"]
-offset_left = -24.0
-offset_top = -34.0
-offset_right = 26.0
-offset_bottom = -30.0
-max_value = 10.0
-value = 10.0
-show_percentage = false
-metadata/_edit_use_anchors_ = true
 
 [node name="Deck" parent="." instance=ExtResource("15_28mf4")]
 

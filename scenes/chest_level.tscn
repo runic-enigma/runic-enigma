@@ -10078,7 +10078,6 @@ script = ExtResource("13_5jq4q")
 
 [node name="EnemyCharacter" type="Node2D" parent="GameScreen"]
 position = Vector2(472, 248)
-script = ExtResource("13_5jq4q")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GameScreen/EnemyCharacter"]
 position = Vector2(18.9167, -2.5)

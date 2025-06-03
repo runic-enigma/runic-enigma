@@ -27,6 +27,11 @@ func take_damage(amount: int) -> void:
 func add_armor(amount: int) -> void:
 	armor += amount
 	
+func add_health(amount: int) -> void:
+	health += amount 
+	if health > max_health:
+		health = max_health
+	
 func start_turn():
 	armor = 0
 	mana = mana_cap
