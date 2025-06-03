@@ -27,10 +27,8 @@ script = ExtResource("1_q5obu")
 
 [node name="CardImage" type="Sprite2D" parent="CardImage"]
 position = Vector2(0, -67.5)
-scale = Vector2(1, 1)
 
 [node name="CardSchema" type="Sprite2D" parent="."]
-scale = Vector2(1, 1)
 texture = ExtResource("2_kg30u")
 
 [node name="CostDisplay" type="Node2D" parent="."]
