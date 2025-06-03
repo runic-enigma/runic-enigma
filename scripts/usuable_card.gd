@@ -18,9 +18,11 @@ func load_card_data(card_data: CardData):
 
 func highlight():
 	$Card.highlight()
+	self.z_index = 1
 	
 func unhighlight():
 	$Card.unhighlight()
+	self.z_index = 0
 
 func get_cost() -> int:
 	return $Card.card_cost
