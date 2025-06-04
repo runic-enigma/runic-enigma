@@ -12,11 +12,13 @@ angle_limit = 0.524
 max_card_spread_angle = 0.196
 
 [node name="Button" type="Button" parent="."]
+visible = false
 offset_right = 8.0
 offset_bottom = 8.0
 text = "Create Card 1"
 
 [node name="Button2" type="Button" parent="."]
+visible = false
 offset_top = 40.0
 offset_right = 113.0
 offset_bottom = 71.0
@@ -24,6 +26,7 @@ text = "Create Card 2
 "
 
 [node name="Button3" type="Button" parent="."]
+visible = false
 offset_top = 80.0
 offset_right = 109.0
 offset_bottom = 111.0

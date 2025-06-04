@@ -1,0 +1,76 @@
+[gd_scene load_steps=7 format=3 uid="uid://dlyxvlhhmvwp0"]
+
+[ext_resource type="Script" uid="uid://cw4ljxygaapgo" path="res://scripts/scene_switcher.gd" id="1_757ry"]
+[ext_resource type="PackedScene" uid="uid://mdk05j6kchhd" path="res://scenes/home_level.tscn" id="1_oanpq"]
+
+[sub_resource type="Animation" id="Animation_757ry"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OverlayLayer/Overlay:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0666667, 0.966667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fmggq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OverlayLayer/Overlay:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_irs10"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OverlayLayer/Overlay:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0666667, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_05j7u"]
+_data = {
+&"RESET": SubResource("Animation_fmggq"),
+&"fade_in": SubResource("Animation_757ry"),
+&"fade_out": SubResource("Animation_irs10")
+}
+
+[node name="SceneSwitcher" type="Node"]
+script = ExtResource("1_757ry")
+
+[node name="OverlayLayer" type="CanvasLayer" parent="."]
+
+[node name="Overlay" type="ColorRect" parent="OverlayLayer"]
+offset_right = 640.0
+offset_bottom = 360.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="HomeLevel" parent="." instance=ExtResource("1_oanpq")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_05j7u")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

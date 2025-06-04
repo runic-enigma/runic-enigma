@@ -1,6 +1,6 @@
 [gd_scene load_steps=39 format=4 uid="uid://d1dcoh56k3mhy"]
 
-[ext_resource type="Script" uid="uid://bxh8d741te6xe" path="res://scripts/main.gd" id="1_xgag4"]
+[ext_resource type="Script" uid="uid://bxh8d741te6xe" path="res://scripts/room_1.gd" id="1_xgag4"]
 [ext_resource type="FontFile" uid="uid://ckd63m8axmre5" path="res://assets/Fonts/C&C Red Alert [INET].ttf" id="2_83ulg"]
 [ext_resource type="PackedScene" uid="uid://bbh5htfm2ff8w" path="res://scenes/ui/deck_view_window.tscn" id="3_ifwvh"]
 [ext_resource type="Script" uid="uid://cju48ejexktsl" path="res://scripts/game_controller.gd" id="4_0m6ay"]

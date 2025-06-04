@@ -1,5 +1,6 @@
 extends Node2D
 
+signal begin_adventure_pressed
 
 func _on_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/main.tscn")
+	emit_signal("begin_adventure_pressed")

@@ -1,15 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://mdk05j6kchhd"]
+[gd_scene load_steps=3 format=3 uid="uid://mdk05j6kchhd"]
 
 [ext_resource type="Script" uid="uid://wl63efu4hlg7" path="res://scripts/home_level.gd" id="1_sbm65"]
+[ext_resource type="Script" uid="uid://b1r2gt7mjuleq" path="res://scripts/level.gd" id="1_urirq"]
 
-[node name="HomeLevel" type="Node2D"]
+[node name="BeginLevel" type="Node2D"]
+script = ExtResource("1_urirq")
+level_name = "room_1"
+
+[node name="HomeLevel" type="Node2D" parent="."]
 script = ExtResource("1_sbm65")
 
-[node name="Button" type="Button" parent="."]
+[node name="ColorRect" type="ColorRect" parent="HomeLevel"]
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(0.489622, 0.489622, 0.489622, 1)
+
+[node name="Button" type="Button" parent="HomeLevel"]
 offset_left = 256.0
 offset_top = 176.0
 offset_right = 393.0
 offset_bottom = 207.0
 text = "Begin Adventure"
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="begin_adventure_pressed" from="HomeLevel" to="." method="_on_home_level_begin_adventure_pressed"]
+[connection signal="pressed" from="HomeLevel/Button" to="HomeLevel" method="_on_button_pressed"]
