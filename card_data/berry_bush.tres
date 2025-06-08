@@ -10,5 +10,6 @@ name = "Berry bush"
 description = "Restore 1 life"
 cost = 1
 texture = ExtResource("2_8u5ma")
+type = 1
 actions = Array[GDScript]([ExtResource("1_i0o2p")])
 metadata/_custom_type_script = "uid://dqao6x87fh2lc"

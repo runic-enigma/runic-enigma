@@ -1,5 +1,4 @@
-@tool
-class_name Character extends Node2D
+extends Node2D
 
 signal character_clicked(character)
 
@@ -55,5 +54,4 @@ func _process(delta: float) -> void:
 	update_health_bar()
 	
 func _on_area_2d_enemy_selected(enemy: Variant) -> void:
-	print("boss clicked")
 	character_clicked.emit(self)

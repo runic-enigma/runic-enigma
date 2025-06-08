@@ -9,7 +9,7 @@ var actions: Array[RefCounted]
 @onready var card_image: Sprite2D = $CardImage
 
 func load_card_data(card_data: CardData):
-	card.set_values(card_data.cost, card_data.name, card_data.description)
+	card.set_values(card_data.cost, card_data.name, card_data.description, card_data.type)
 	card_image.set_texture(card_data.texture)
 	for script in card_data.actions:
 		var action_script = RefCounted.new()
@@ -26,6 +26,9 @@ func unhighlight():
 
 func get_cost() -> int:
 	return $Card.card_cost
+	
+func get_type() -> PlayerData.Type:
+	return $Card.type
 
 func _on_card_mouse_entered(card: Card) -> void:
 	mouse_entered.emit(self)

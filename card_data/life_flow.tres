@@ -10,5 +10,6 @@ name = "Life flow"
 description = "Restore 2 hp"
 cost = 2
 texture = ExtResource("3_wfuac")
+type = 1
 actions = Array[GDScript]([ExtResource("1_qj3mm")])
 metadata/_custom_type_script = "uid://dqao6x87fh2lc"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://beljby3jbo6v5"]
+[gd_scene load_steps=35 format=4 uid="uid://beljby3jbo6v5"]
 
 [ext_resource type="Script" uid="uid://bxh8d741te6xe" path="res://scripts/room_1.gd" id="1_00i1e"]
 [ext_resource type="Script" uid="uid://b1r2gt7mjuleq" path="res://scripts/level.gd" id="1_eqia6"]
@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://cgs5ksdrwal8o" path="res://assets/Assets/Tree-Assets.png" id="11_nm4cc"]
 [ext_resource type="PackedScene" uid="uid://83t4srov24l0" path="res://scenes/player_character.tscn" id="12_ii77v"]
 [ext_resource type="Script" uid="uid://b1dfwur10p0qm" path="res://scripts/character.gd" id="13_tuho1"]
-[ext_resource type="Texture2D" uid="uid://dsy6kktmmgb30" path="res://assets/Mob/Boar/Idle/Idle-Sheet.png" id="14_161dn"]
+[ext_resource type="PackedScene" uid="uid://csgdqltfeujts" path="res://scenes/enemy_character.tscn" id="15_eqia6"]
 [ext_resource type="PackedScene" uid="uid://erq8rp3ua1yy" path="res://scenes/deck.tscn" id="15_vvxk7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jkv2x"]
@@ -9937,42 +9937,6 @@ sources/0 = SubResource("TileSetAtlasSource_0xm2m")
 sources/1 = SubResource("TileSetAtlasSource_lquwl")
 sources/2 = SubResource("TileSetAtlasSource_w48qg")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_eb6dy"]
-atlas = ExtResource("14_161dn")
-region = Rect2(0, 0, 48, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_trceg"]
-atlas = ExtResource("14_161dn")
-region = Rect2(48, 0, 48, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_a8y0u"]
-atlas = ExtResource("14_161dn")
-region = Rect2(96, 0, 48, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jkv2x"]
-atlas = ExtResource("14_161dn")
-region = Rect2(144, 0, 48, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_jbj1t"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_eb6dy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_trceg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_a8y0u")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jkv2x")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
 [node name="Room2Level" type="Node2D"]
 script = ExtResource("1_eqia6")
 level_name = "room_3"
@@ -10102,39 +10066,13 @@ metadata/_edit_group_ = true
 position = Vector2(160, 235)
 script = ExtResource("13_tuho1")
 
-[node name="EnemyCharacter2" type="Node2D" parent="Main/GameScreen"]
-position = Vector2(532, 249)
-script = ExtResource("13_tuho1")
+[node name="Enemies" type="Node2D" parent="Main/GameScreen"]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Main/GameScreen/EnemyCharacter2"]
-position = Vector2(0, -2)
-sprite_frames = SubResource("SpriteFrames_jbj1t")
+[node name="EnemyCharacter3" parent="Main/GameScreen/Enemies" instance=ExtResource("15_eqia6")]
+position = Vector2(528, 248)
 
-[node name="HealthBar" type="ProgressBar" parent="Main/GameScreen/EnemyCharacter2"]
-offset_left = -24.0
-offset_top = -34.0
-offset_right = 26.0
-offset_bottom = -30.0
-max_value = 10.0
-value = 10.0
-show_percentage = false
-metadata/_edit_use_anchors_ = true
-
-[node name="EnemyCharacter" type="Node2D" parent="Main/GameScreen"]
+[node name="EnemyCharacter4" parent="Main/GameScreen/Enemies" instance=ExtResource("15_eqia6")]
 position = Vector2(472, 248)
-script = ExtResource("13_tuho1")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Main/GameScreen/EnemyCharacter"]
-sprite_frames = SubResource("SpriteFrames_jbj1t")
-
-[node name="HealthBar" type="ProgressBar" parent="Main/GameScreen/EnemyCharacter"]
-offset_left = -24.0
-offset_top = -33.0
-offset_right = 26.0
-offset_bottom = -29.0
-max_value = 10.0
-value = 10.0
-show_percentage = false
 
 [node name="Deck" parent="Main" instance=ExtResource("15_vvxk7")]
 
@@ -10153,6 +10091,7 @@ offset_bottom = 39.0
 text = "End Turn"
 
 [node name="StartGame" type="Button" parent="Main"]
+visible = false
 offset_left = 496.0
 offset_top = 8.0
 offset_right = 631.0
@@ -10161,6 +10100,7 @@ text = "Start New Game
 "
 
 [node name="Button" type="Button" parent="Main"]
+visible = false
 offset_left = 536.0
 offset_top = 312.0
 offset_right = 627.0

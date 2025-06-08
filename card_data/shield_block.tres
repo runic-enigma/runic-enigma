@@ -10,5 +10,6 @@ name = "Shield block"
 description = "Gain 1 armor"
 cost = 1
 texture = ExtResource("2_1wqbi")
+type = 1
 actions = Array[GDScript]([ExtResource("1_1wqbi")])
 metadata/_custom_type_script = "uid://dqao6x87fh2lc"

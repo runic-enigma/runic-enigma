@@ -19,7 +19,7 @@ var enemy_character_state: int = 0
 @onready var life_flow = preload("res://card_data/life_flow.tres")
 @onready var shield_block = preload("res://card_data/shield_block.tres")
 
-@onready var deck: Deck = Deck.new()
+@onready var deck: Deck = PlayerData.deck
 
 var playableDeck: PlayableDeck
 
@@ -32,9 +32,16 @@ func restart_game():
 	deck.add_card(berry_bush)
 	deck.add_card(fire_ball)
 	deck.add_card(frost_bolt)
+	deck.add_card(fire_ball)
+	deck.add_card(fire_ball)
+	deck.add_card(fire_ball)
+	deck.add_card(fire_ball)
+	deck.add_card(fire_ball)
+	deck.add_card(fire_ball)
 	deck.add_card(life_flow)
 	deck.add_card(shield_block)
-	playableDeck = deck.get_playable_deck()
+	playableDeck = PlayerData.deck.get_playable_deck()
+	playableDeck.shuffle()
 	
 	deck_with_hand.add_card(playableDeck.draw_card())
 	deck_with_hand.add_card(playableDeck.draw_card())
@@ -43,27 +50,47 @@ func restart_game():
 	deck_with_hand.add_card(playableDeck.draw_card())
 	
 func _ready():
+	
+	game_control.current_state = GameController.GameState.PLAYER_TURN
+	PlayerData.start_turn()
+	playableDeck = PlayerData.deck.get_playable_deck()
+	playableDeck.shuffle()
+	
 	deck_with_hand.deck = deck
+	
+	deck_with_hand.add_card(playableDeck.draw_card())
+	deck_with_hand.add_card(playableDeck.draw_card())
+	deck_with_hand.add_card(playableDeck.draw_card())
+	deck_with_hand.add_card(playableDeck.draw_card())
+	deck_with_hand.add_card(playableDeck.draw_card())
+	
 	
 func _process(delta: float) -> void:
 	if !game_control.is_running:
 		return
 	
-	$ManaAmount.set_text(str($GameScreen/PlayerCharacter.mana))
+	$ManaAmount.set_text(str(PlayerData.mana))
+	$GameScreen/PlayerCharacter.health = PlayerData.health
+	$GameScreen/PlayerCharacter.update_health_bar()
 	
-	if $GameScreen/PlayerCharacter.health <= 0:
+	var enemies = $GameScreen/Enemies.get_children()
+	for enemy in enemies:
+		if enemy.health <= 0:
+			enemy.queue_free()
+	
+	if PlayerData.health <= 0:
 		game_control.transition(GameController.GameState.GAMEOVER)
-	elif $GameScreen/EnemyCharacter.health <= 0:
-		game_control.transition(GameController.GameState.VICTORY)
-		
-	
+	elif !$GameScreen/Enemies.get_children():
+			$Button.show()
+			$EndTurn.hide()
+			
 	if game_control.current_state == GameController.GameState.ENEMY_TURN:
 		if enemy_character_state == 0:
-			$GameScreen/PlayerCharacter.take_damage(3)
+			PlayerData.take_damage(3)
 		elif enemy_character_state == 1:
-			$GameScreen/PlayerCharacter.take_damage(2)
+			PlayerData.take_damage(2)
 		elif enemy_character_state == 2:
-			$GameScreen/PlayerCharacter.take_damage(1)
+			PlayerData.take_damage(1)
 
 		enemy_character_state = posmod(enemy_character_state + 1, 3)
 		game_control.transition(GameController.GameState.PLAYER_TURN)
@@ -72,7 +99,7 @@ func _process(delta: float) -> void:
 		if card_with_id:
 			deck_with_hand.add_card(card_with_id)
 		
-		$GameScreen/PlayerCharacter.start_turn()
+		PlayerData.start_turn()
 		
 	if game_control.current_state == GameController.GameState.VICTORY:
 		$CanvasLayer/VictoryOverlay.show()
@@ -90,10 +117,20 @@ func _input(event: InputEvent) -> void:
 		
 func _on_deck_card_activated(card: UsuableCard) -> void:
 	var card_cost: int = card.get_cost()
-	if card_cost <= $GameScreen/PlayerCharacter.mana:
+	if card_cost <= PlayerData.mana:
+		var enemy = null
+		if card.get_type() == PlayerData.Type.ATTACK:
+			var enemies_container = $GameScreen/Enemies
+			
+			for enemy_child in enemies_container.get_children():
+				enemy = await enemy_child.character_clicked
+				break
+		else:
+			enemy = null
+			
 		card.activate({
-			"caster": $GameScreen/PlayerCharacter,
-			"targets": [$GameScreen/EnemyCharacter]
+			"caster": PlayerData,
+			"targets": [enemy]
 		})
 		$Deck.remove_card(card)
 		card.queue_free()
@@ -102,7 +139,9 @@ func _on_deck_card_activated(card: UsuableCard) -> void:
 func _on_end_turn_pressed() -> void:
 	if game_control.current_state == GameController.GameState.PLAYER_TURN:
 		game_control.transition(GameController.GameState.ENEMY_TURN)
-		$GameScreen/EnemyCharacter.start_turn()
+		var enemies = $GameScreen/Enemies.get_children()
+		var enemy = enemies.pick_random()
+		enemy.start_turn()
 
 func _on_deck_button_pressed() -> void:
 	if deck_view_window.visible:

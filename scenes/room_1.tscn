@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://ccxouvwj8j50g"]
+[gd_scene load_steps=35 format=4 uid="uid://ccxouvwj8j50g"]
 
 [ext_resource type="Script" uid="uid://b1r2gt7mjuleq" path="res://scripts/level.gd" id="1_1afn8"]
 [ext_resource type="Script" uid="uid://bxh8d741te6xe" path="res://scripts/room_1.gd" id="1_gu0is"]
@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://cgs5ksdrwal8o" path="res://assets/Assets/Tree-Assets.png" id="11_sl6s1"]
 [ext_resource type="PackedScene" uid="uid://83t4srov24l0" path="res://scenes/player_character.tscn" id="12_22j8i"]
 [ext_resource type="Script" uid="uid://b1dfwur10p0qm" path="res://scripts/character.gd" id="13_8vr6h"]
-[ext_resource type="Texture2D" uid="uid://dsy6kktmmgb30" path="res://assets/Mob/Boar/Idle/Idle-Sheet.png" id="14_aymn0"]
+[ext_resource type="PackedScene" uid="uid://csgdqltfeujts" path="res://scenes/enemy_character.tscn" id="15_1afn8"]
 [ext_resource type="PackedScene" uid="uid://erq8rp3ua1yy" path="res://scenes/deck.tscn" id="15_81m1x"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jkv2x"]
@@ -9937,42 +9937,6 @@ sources/0 = SubResource("TileSetAtlasSource_0xm2m")
 sources/1 = SubResource("TileSetAtlasSource_lquwl")
 sources/2 = SubResource("TileSetAtlasSource_w48qg")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_eb6dy"]
-atlas = ExtResource("14_aymn0")
-region = Rect2(0, 0, 48, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_trceg"]
-atlas = ExtResource("14_aymn0")
-region = Rect2(48, 0, 48, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_a8y0u"]
-atlas = ExtResource("14_aymn0")
-region = Rect2(96, 0, 48, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jkv2x"]
-atlas = ExtResource("14_aymn0")
-region = Rect2(144, 0, 48, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_jbj1t"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_eb6dy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_trceg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_a8y0u")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jkv2x")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
 [node name="Room1Level" type="Node2D"]
 script = ExtResource("1_1afn8")
 level_name = "room_2"
@@ -10101,22 +10065,13 @@ metadata/_edit_group_ = true
 [node name="PlayerCharacter" parent="Main/GameScreen" instance=ExtResource("12_22j8i")]
 position = Vector2(160, 235)
 script = ExtResource("13_8vr6h")
+starting_mana = 10
+mana_cap = 10
 
-[node name="EnemyCharacter" type="Node2D" parent="Main/GameScreen"]
+[node name="Enemies" type="Node2D" parent="Main/GameScreen"]
+
+[node name="EnemyCharacter" parent="Main/GameScreen/Enemies" instance=ExtResource("15_1afn8")]
 position = Vector2(472, 248)
-script = ExtResource("13_8vr6h")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Main/GameScreen/EnemyCharacter"]
-sprite_frames = SubResource("SpriteFrames_jbj1t")
-
-[node name="HealthBar" type="ProgressBar" parent="Main/GameScreen/EnemyCharacter"]
-offset_left = -24.0
-offset_top = -32.0
-offset_right = 26.0
-offset_bottom = -28.0
-max_value = 10.0
-value = 10.0
-show_percentage = false
 
 [node name="Deck" parent="Main" instance=ExtResource("15_81m1x")]
 
@@ -10143,6 +10098,7 @@ offset_bottom = 343.0
 text = "Open deck"
 
 [node name="StartGame" type="Button" parent="Main"]
+visible = false
 offset_left = 496.0
 offset_top = 8.0
 offset_right = 631.0
@@ -10151,6 +10107,7 @@ text = "Start New Game
 "
 
 [node name="Button" type="Button" parent="Main"]
+visible = false
 offset_left = 536.0
 offset_top = 304.0
 offset_right = 627.0

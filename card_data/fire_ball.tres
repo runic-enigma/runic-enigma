@@ -10,5 +10,6 @@ name = "Fire ball"
 description = "Deal 2 dmg"
 cost = 2
 texture = ExtResource("2_l0kmc")
+type = 0
 actions = Array[GDScript]([ExtResource("1_l0kmc")])
 metadata/_custom_type_script = "uid://dqao6x87fh2lc"

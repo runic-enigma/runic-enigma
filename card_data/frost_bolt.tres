@@ -10,5 +10,6 @@ name = "Frost bolt"
 description = "Deal 1 dmg"
 cost = 1
 texture = ExtResource("2_fdccw")
+type = 0
 actions = Array[GDScript]([ExtResource("1_1b8r5")])
 metadata/_custom_type_script = "uid://dqao6x87fh2lc"
