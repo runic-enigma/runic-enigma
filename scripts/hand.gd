@@ -79,7 +79,8 @@ func _input(event: InputEvent) -> void:
 func _process(delta: float) -> void:
 	for card in hand:
 		current_selected_card_index = -1
-		card.unhighlight()
+		if !card.card.clicked:
+			card.unhighlight()
 	
 	if !touched.is_empty():
 		var highest_touched_index: int = -1

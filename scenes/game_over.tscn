@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://l7wrdd4xduwc"]
+
+[ext_resource type="Script" uid="uid://b1r2gt7mjuleq" path="res://scripts/level.gd" id="1_racf3"]
+[ext_resource type="Script" uid="uid://wl63efu4hlg7" path="res://scripts/home_level.gd" id="2_7m3ot"]
+[ext_resource type="FontFile" uid="uid://ckd63m8axmre5" path="res://assets/Fonts/C&C Red Alert [INET].ttf" id="3_v3hpu"]
+[ext_resource type="AudioStream" uid="uid://dnmyplbctptxa" path="res://assets/click.mp3" id="4_irg28"]
+
+[node name="GameOverLevel" type="Node2D"]
+script = ExtResource("1_racf3")
+level_name = "room_1"
+
+[node name="GameOver" type="Node2D" parent="."]
+script = ExtResource("2_7m3ot")
+
+[node name="ColorRect" type="ColorRect" parent="GameOver"]
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="GameOver"]
+modulate = Color(1, 0, 0, 1)
+offset_top = 80.0
+offset_right = 640.0
+offset_bottom = 144.0
+theme_override_fonts/font = ExtResource("3_v3hpu")
+theme_override_font_sizes/font_size = 64
+text = "Game Over"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="GameOver"]
+offset_left = 248.0
+offset_top = 176.0
+offset_right = 385.0
+offset_bottom = 207.0
+text = "Restart"
+flat = true
+
+[node name="Click" type="AudioStreamPlayer" parent="GameOver"]
+stream = ExtResource("4_irg28")
+
+[node name="Button2" type="Button" parent="GameOver"]
+offset_left = 288.0
+offset_top = 224.0
+offset_right = 330.0
+offset_bottom = 255.0
+text = "Quit"
+flat = true
+
+[connection signal="begin_adventure_pressed" from="GameOver" to="." method="_on_game_over_begin_adventure_pressed"]
+[connection signal="pressed" from="GameOver/Button" to="GameOver" method="_on_button_pressed"]
+[connection signal="pressed" from="GameOver/Button2" to="." method="_on_button_2_pressed"]

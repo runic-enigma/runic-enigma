@@ -1,7 +1,5 @@
 extends Node2D
 
-signal button_pressed
-
 @export var debug_mode: bool = true:
 	set(value):
 		if !is_node_ready():
@@ -53,8 +51,6 @@ func restart_game():
 	
 func _ready():
 	
-	$"../Music".play()
-	
 	game_control.current_state = GameController.GameState.PLAYER_TURN
 	PlayerData.start_turn()
 	playableDeck = PlayerData.deck.get_playable_deck()
@@ -68,6 +64,7 @@ func _ready():
 	deck_with_hand.add_card(playableDeck.draw_card())
 	deck_with_hand.add_card(playableDeck.draw_card())
 	
+	$"../Music".play()
 	
 func _process(delta: float) -> void:
 	if !game_control.is_running:
@@ -88,6 +85,8 @@ func _process(delta: float) -> void:
 			$Button.show()
 			$EndTurn.hide()
 			$Deck.hide()
+			game_control.current_state = GameController.GameState.VICTORY
+			
 			
 	if game_control.current_state == GameController.GameState.ENEMY_TURN:
 		if enemy_character_state == 0:
@@ -96,9 +95,9 @@ func _process(delta: float) -> void:
 			PlayerData.take_damage(2)
 		elif enemy_character_state == 2:
 			PlayerData.take_damage(1)
-		
-		$"../CharacterHit".play()
 
+
+		$"../CharacterHit".play()
 		enemy_character_state = posmod(enemy_character_state + 1, 3)
 		game_control.transition(GameController.GameState.PLAYER_TURN)
 		var card_with_id = playableDeck.draw_card()
@@ -115,6 +114,8 @@ func _process(delta: float) -> void:
 		
 	if game_control.current_state == GameController.GameState.GAMEOVER:
 		$CanvasLayer/GameOverOverlay.show()
+	else:
+		$CanvasLayer/GameOverOverlay.hide()
 		
 func _input(event: InputEvent) -> void:
 	if event.is_action("restart"):
@@ -136,19 +137,17 @@ func _on_deck_card_activated(card: UsuableCard) -> void:
 			
 		if card.get_type() == PlayerData.Type.ATTACK:
 			$"../Hit".play()
-			
 		card.card.clicked = false
 		card.activate({
 			"caster": PlayerData,
 			"targets": [enemy]
 		})
+		
 		$Deck.remove_card(card)
 		card.queue_free()
 
 
 func _on_end_turn_pressed() -> void:
-	$"../ClickSound".play()
-	
 	if game_control.current_state == GameController.GameState.PLAYER_TURN:
 		game_control.transition(GameController.GameState.ENEMY_TURN)
 		var enemies = $GameScreen/Enemies.get_children()
@@ -167,9 +166,3 @@ func _on_deck_button_pressed() -> void:
 
 func _on_start_game_pressed() -> void:
 	restart_game()
-
-
-func _on_button_pressed() -> void:
-	$"../ClickSound".play()
-	
-	button_pressed.emit()

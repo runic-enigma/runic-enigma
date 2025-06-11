@@ -67,12 +67,6 @@ func _ready() -> void:
 	deck.add_card(life_flow)
 	deck.add_card(life_flow)
 	deck.add_card(life_flow)
-	deck.add_card(life_flow)
-	deck.add_card(life_flow)
-	deck.add_card(life_flow)
-	deck.add_card(life_flow)
-	deck.add_card(life_flow)
-	deck.add_card(shield_block)
 	
 	mana = mana_cap
 

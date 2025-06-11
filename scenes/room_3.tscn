@@ -1,9 +1,13 @@
-[gd_scene load_steps=36 format=4 uid="uid://ck8vw7rx65qui"]
+[gd_scene load_steps=45 format=4 uid="uid://ck8vw7rx65qui"]
 
 [ext_resource type="Script" uid="uid://b1r2gt7mjuleq" path="res://scripts/level.gd" id="1_7vc6b"]
 [ext_resource type="FontFile" uid="uid://ckd63m8axmre5" path="res://assets/Fonts/C&C Red Alert [INET].ttf" id="2_0xp5i"]
+[ext_resource type="Script" uid="uid://ca2hmach0hhqt" path="res://scripts/chest_scene.gd" id="2_cmeyo"]
 [ext_resource type="PackedScene" uid="uid://bbh5htfm2ff8w" path="res://scenes/ui/deck_view_window.tscn" id="3_d73kp"]
+[ext_resource type="PackedScene" uid="uid://b6xcs6sadofi7" path="res://scenes/card.tscn" id="3_rrdhv"]
+[ext_resource type="Texture2D" uid="uid://c2epiosmxgq44" path="res://assets/Cards/Backgrounds/Background2.png" id="4_4m1bc"]
 [ext_resource type="Script" uid="uid://cju48ejexktsl" path="res://scripts/game_controller.gd" id="4_85oxc"]
+[ext_resource type="Script" uid="uid://bvdosjyg530pg" path="res://scripts/card_scipt.gd" id="4_cmeyo"]
 [ext_resource type="Texture2D" uid="uid://cig6lm7ne073w" path="res://assets/Background/Background.png" id="5_n7lue"]
 [ext_resource type="Texture2D" uid="uid://dvlvjexbqymq6" path="res://assets/Trees/Background.png" id="6_dgwir"]
 [ext_resource type="Texture2D" uid="uid://dxhohy5do48ac" path="res://assets/Trees/Dark-Tree.png" id="7_xxwog"]
@@ -15,6 +19,10 @@
 [ext_resource type="Script" uid="uid://b1dfwur10p0qm" path="res://scripts/character.gd" id="13_5jq4q"]
 [ext_resource type="Texture2D" uid="uid://chcwhdf7d03ie" path="res://assets/Assets/Chest.png" id="14_58h4t"]
 [ext_resource type="PackedScene" uid="uid://erq8rp3ua1yy" path="res://scenes/deck.tscn" id="15_bg175"]
+[ext_resource type="AudioStream" uid="uid://cujnv5fwsrl63" path="res://assets/music.mp3" id="16_7vc6b"]
+[ext_resource type="Script" uid="uid://dem42foefmumf" path="res://scripts/chest_script.gd" id="18_kabvg"]
+[ext_resource type="Script" uid="uid://ibmrnigfko80" path="res://scripts/enemy_area.gd" id="19_oxars"]
+[ext_resource type="AudioStream" uid="uid://dnmyplbctptxa" path="res://assets/click.mp3" id="23_ielfm"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jkv2x"]
 font = ExtResource("2_0xp5i")
@@ -9951,11 +9959,15 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kabvg"]
+size = Vector2(48, 40)
+
 [node name="Room3Level" type="Node2D"]
 script = ExtResource("1_7vc6b")
 level_name = "room_4"
 
 [node name="Main" type="Node2D" parent="."]
+script = ExtResource("2_cmeyo")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Main"]
 
@@ -9984,30 +9996,48 @@ grow_vertical = 2
 text = "Game over"
 label_settings = SubResource("LabelSettings_jkv2x")
 
-[node name="VictoryOverlay" type="ColorRect" parent="Main/CanvasLayer"]
+[node name="CardOverlay" type="ColorRect" parent="Main/CanvasLayer"]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.404167, 1, 0.35, 0.431373)
+color = Color(0, 0, 0, 0.713726)
 
-[node name="Label" type="Label" parent="Main/CanvasLayer/VictoryOverlay"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -27.0
-offset_top = -11.5
-offset_right = 27.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Victory"
-label_settings = SubResource("LabelSettings_jkv2x")
+[node name="AddCard" type="Button" parent="Main/CanvasLayer/CardOverlay"]
+z_index = 100
+layout_mode = 0
+offset_left = 272.0
+offset_top = 264.0
+offset_right = 372.0
+offset_bottom = 295.0
+theme_override_fonts/font = ExtResource("2_0xp5i")
+text = "Add to deck"
+flat = true
+
+[node name="Label" type="Label" parent="Main/CanvasLayer/CardOverlay"]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 72.0
+offset_right = 388.0
+offset_bottom = 95.0
+theme_override_fonts/font = ExtResource("2_0xp5i")
+text = "You found new card!"
+
+[node name="Card" parent="Main/CanvasLayer/CardOverlay" instance=ExtResource("3_rrdhv")]
+z_index = 2
+position = Vector2(320, 176)
+script = ExtResource("4_cmeyo")
+card_name = "Golden fire ball"
+card_description = "Deal 12 dmg"
+card_cost = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Main/CanvasLayer/CardOverlay/Card"]
+z_index = 1
+z_as_relative = false
+position = Vector2(0, -60)
+texture = ExtResource("4_4m1bc")
 
 [node name="ColorRect" type="ColorRect" parent="Main/CanvasLayer"]
 visible = false
@@ -10017,11 +10047,13 @@ offset_right = 572.0
 offset_bottom = 332.0
 
 [node name="DeckViewWindow" parent="Main/CanvasLayer" instance=ExtResource("3_d73kp")]
+visible = false
 
 [node name="GameController" type="Node2D" parent="Main"]
 script = ExtResource("4_85oxc")
 
 [node name="GameScreen" type="Node2D" parent="Main"]
+position = Vector2(0, 40)
 
 [node name="Background" type="Node2D" parent="Main/GameScreen"]
 position = Vector2(0, -45)
@@ -10081,15 +10113,24 @@ script = ExtResource("13_5jq4q")
 
 [node name="EnemyCharacter" type="Node2D" parent="Main/GameScreen"]
 position = Vector2(472, 248)
+script = ExtResource("18_kabvg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Main/GameScreen/EnemyCharacter"]
 position = Vector2(18.9167, -2.5)
 scale = Vector2(1.27778, 1.27778)
 sprite_frames = SubResource("SpriteFrames_jbj1t")
 
+[node name="Area2D" type="Area2D" parent="Main/GameScreen/EnemyCharacter"]
+script = ExtResource("19_oxars")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main/GameScreen/EnemyCharacter/Area2D"]
+position = Vector2(16, -4)
+shape = SubResource("RectangleShape2D_kabvg")
+
 [node name="Deck" parent="Main" instance=ExtResource("15_bg175")]
 
 [node name="ManaAmount" type="Label" parent="Main"]
+visible = false
 offset_left = 152.0
 offset_top = 176.0
 offset_right = 192.0
@@ -10097,6 +10138,7 @@ offset_bottom = 225.0
 text = "3"
 
 [node name="EndTurn" type="Button" parent="Main"]
+visible = false
 offset_left = 288.0
 offset_top = 8.0
 offset_right = 366.0
@@ -10104,6 +10146,7 @@ offset_bottom = 39.0
 text = "End Turn"
 
 [node name="DeckButton" type="Button" parent="Main"]
+visible = false
 offset_left = 16.0
 offset_top = 312.0
 offset_right = 107.0
@@ -10111,6 +10154,7 @@ offset_bottom = 343.0
 text = "Open deck"
 
 [node name="StartGame" type="Button" parent="Main"]
+visible = false
 offset_left = 496.0
 offset_top = 8.0
 offset_right = 631.0
@@ -10125,6 +10169,15 @@ offset_right = 627.0
 offset_bottom = 343.0
 text = "Next room"
 
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_7vc6b")
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("23_ielfm")
+
+[connection signal="pressed" from="Main/CanvasLayer/CardOverlay/AddCard" to="Main" method="_on_button_pressed"]
+[connection signal="pressed" from="Main/CanvasLayer/CardOverlay/AddCard" to="Main" method="_on_add_card_pressed"]
+[connection signal="enemy_selected" from="Main/GameScreen/EnemyCharacter/Area2D" to="Main/GameScreen/EnemyCharacter" method="_on_area_2d_enemy_selected"]
 [connection signal="card_activated" from="Main/Deck" to="Main" method="_on_deck_card_activated"]
 [connection signal="pressed" from="Main/EndTurn" to="Main" method="_on_end_turn_pressed"]
 [connection signal="pressed" from="Main/DeckButton" to="Main" method="_on_deck_button_pressed"]

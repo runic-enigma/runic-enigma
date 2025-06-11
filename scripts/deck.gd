@@ -36,6 +36,7 @@ func _on_button_2_pressed() -> void:
 
 
 func _on_hand_card_activated(card: UsuableCard) -> void:
+	card.card.highlight()
 	card_activated.emit(card)
 
 

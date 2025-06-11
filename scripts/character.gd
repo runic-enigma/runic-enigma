@@ -26,6 +26,7 @@ func spend_mana(amount: int) -> void:
 	mana -= amount
 	
 func take_damage(amount: int) -> void:
+	$AnimatedSprite2D.animation = "take_damage"
 	health -= amount
 
 func add_armor(amount: int) -> void:
@@ -57,3 +58,8 @@ func _process(delta: float) -> void:
 func _on_area_2d_enemy_selected(enemy: Variant) -> void:
 	print("boss clicked")
 	character_clicked.emit(self)
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	if $AnimatedSprite2D.animation == "take_damage":
+		$AnimatedSprite2D.animation = "default"
