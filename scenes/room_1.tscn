@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=4 uid="uid://ccxouvwj8j50g"]
+[gd_scene load_steps=42 format=4 uid="uid://ccxouvwj8j50g"]
 
 [ext_resource type="Script" uid="uid://b1r2gt7mjuleq" path="res://scripts/level.gd" id="1_1afn8"]
 [ext_resource type="Script" uid="uid://bxh8d741te6xe" path="res://scripts/room_1.gd" id="1_gu0is"]
@@ -14,7 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://cgs5ksdrwal8o" path="res://assets/Assets/Tree-Assets.png" id="11_sl6s1"]
 [ext_resource type="PackedScene" uid="uid://83t4srov24l0" path="res://scenes/player_character.tscn" id="12_22j8i"]
 [ext_resource type="Texture2D" uid="uid://byfao3kwx0rx6" path="res://assets/HUD/Base-01.png" id="13_4oupy"]
-[ext_resource type="Script" uid="uid://b1dfwur10p0qm" path="res://scripts/character.gd" id="13_8vr6h"]
 [ext_resource type="PackedScene" uid="uid://csgdqltfeujts" path="res://scenes/enemy_character.tscn" id="15_1afn8"]
 [ext_resource type="PackedScene" uid="uid://erq8rp3ua1yy" path="res://scenes/deck.tscn" id="15_81m1x"]
 [ext_resource type="AudioStream" uid="uid://dnmyplbctptxa" path="res://assets/click.mp3" id="17_m0003"]
@@ -10444,7 +10443,6 @@ tile_set = SubResource("TileSet_hvue4")
 
 [node name="PlayerCharacter" parent="Main/GameScreen" instance=ExtResource("12_22j8i")]
 position = Vector2(160, 235)
-script = ExtResource("13_8vr6h")
 starting_mana = 10
 mana_cap = 10
 

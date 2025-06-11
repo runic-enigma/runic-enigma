@@ -10514,7 +10514,6 @@ metadata/_edit_group_ = true
 
 [node name="PlayerCharacter" parent="Main/GameScreen" instance=ExtResource("12_ii77v")]
 position = Vector2(160, 235)
-script = ExtResource("13_tuho1")
 
 [node name="Enemies" type="Node2D" parent="Main/GameScreen"]
 
@@ -10525,7 +10524,7 @@ max_health = 5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Main/GameScreen/Enemies/EnemyCharacter3"]
 sprite_frames = SubResource("SpriteFrames_tuho1")
-frame_progress = 0.485411
+frame_progress = 0.67714
 
 [node name="HealthBar" type="ProgressBar" parent="Main/GameScreen/Enemies/EnemyCharacter3"]
 modulate = Color(1, 0, 0, 1)
@@ -10608,6 +10607,7 @@ stream = ExtResource("19_k7br5")
 stream = ExtResource("20_ivrne")
 
 [connection signal="button_pressed" from="Main" to="." method="_on_main_button_pressed"]
+[connection signal="pressed" from="Main/CanvasLayer/GameOverOverlay/MainMenu" to="." method="_on_main_menu_pressed"]
 [connection signal="animation_finished" from="Main/GameScreen/Enemies/EnemyCharacter3/AnimatedSprite2D" to="Main/GameScreen/Enemies/EnemyCharacter3" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="enemy_selected" from="Main/GameScreen/Enemies/EnemyCharacter3/Area2D" to="Main/GameScreen/Enemies/EnemyCharacter3" method="_on_area_2d_enemy_selected"]
 [connection signal="card_activated" from="Main/Deck" to="Main" method="_on_deck_card_activated"]

@@ -63,3 +63,5 @@ func _on_area_2d_enemy_selected(enemy: Variant) -> void:
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if $AnimatedSprite2D.animation == "take_damage":
 		$AnimatedSprite2D.animation = "default"
+	if $AnimatedSprite2D.animation == "deal_damage":
+		$AnimatedSprite2D.animation = "default"

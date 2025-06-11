@@ -34,5 +34,4 @@ func _on_button_pressed() -> void:
 
 
 func _on_main_menu_pressed() -> void:
-	print("hee?")
 	level_changed.emit("home_level")

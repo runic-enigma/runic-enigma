@@ -24,6 +24,7 @@ var deck = Deck.new()
 @onready var shield_block = preload("res://card_data/shield_block.tres")
 
 func _ready() -> void:
+	
 	deck.add_card(berry_bush)
 	deck.add_card(fire_ball)
 	deck.add_card(frost_bolt)
@@ -71,7 +72,60 @@ func _ready() -> void:
 	mana = mana_cap
 
 func reset_data():
-	pass
+	
+	print("reset")
+	health = 10
+	mana = 10
+	armor = 0
+	player_deck = []
+
+	deck = Deck.new()
+	
+	deck.add_card(berry_bush)
+	deck.add_card(fire_ball)
+	deck.add_card(frost_bolt)
+	deck.add_card(fire_ball)
+	deck.add_card(fire_ball)
+	deck.add_card(fire_ball)
+	deck.add_card(fire_ball)
+	deck.add_card(fire_ball)
+	deck.add_card(fire_ball)
+	deck.add_card(fire_ball)
+	deck.add_card(fire_ball)
+	deck.add_card(fire_ball)
+	deck.add_card(fire_ball)
+	deck.add_card(fire_ball)
+	deck.add_card(fire_ball)
+	deck.add_card(fire_ball)
+	deck.add_card(fire_ball)
+	deck.add_card(fire_ball)
+	deck.add_card(fire_ball)
+	deck.add_card(fire_ball)
+	deck.add_card(fire_ball)
+	deck.add_card(fire_ball)
+	deck.add_card(fire_ball)
+	deck.add_card(fire_ball)
+	deck.add_card(life_flow)
+	deck.add_card(life_flow)
+	deck.add_card(life_flow)
+	deck.add_card(life_flow)
+	deck.add_card(life_flow)
+	deck.add_card(life_flow)
+	deck.add_card(life_flow)
+	deck.add_card(life_flow)
+	deck.add_card(life_flow)
+	deck.add_card(life_flow)
+	deck.add_card(life_flow)
+	deck.add_card(life_flow)
+	deck.add_card(life_flow)
+	deck.add_card(life_flow)
+	deck.add_card(life_flow)
+	deck.add_card(life_flow)
+	deck.add_card(life_flow)
+	deck.add_card(life_flow)
+	deck.add_card(life_flow)
+	
+	mana = mana_cap
 
 func spend_mana(amount: int) -> void:
 	mana -= amount

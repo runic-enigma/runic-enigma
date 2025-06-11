@@ -137,6 +137,8 @@ func _on_deck_card_activated(card: UsuableCard) -> void:
 			
 		if card.get_type() == PlayerData.Type.ATTACK:
 			$"../Hit".play()
+			$GameScreen/PlayerCharacter/AnimatedSprite2D.play("deal_damage")
+			
 		card.card.clicked = false
 		card.activate({
 			"caster": PlayerData,

@@ -1,6 +1,40 @@
-[gd_scene load_steps=11 format=3 uid="uid://83t4srov24l0"]
+[gd_scene load_steps=21 format=3 uid="uid://83t4srov24l0"]
 
 [ext_resource type="Texture2D" uid="uid://y8ggyimncge1" path="res://assets/Character/Idle/Idle-Sheet.png" id="1_4flbx"]
+[ext_resource type="Texture2D" uid="uid://c2w6qtwwohcvq" path="res://assets/Character/Attack-01/Attack-01-Sheet.png" id="1_6r27q"]
+[ext_resource type="Script" uid="uid://b1dfwur10p0qm" path="res://scripts/character.gd" id="1_kww55"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uj7mf"]
+atlas = ExtResource("1_6r27q")
+region = Rect2(0, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2vmgx"]
+atlas = ExtResource("1_6r27q")
+region = Rect2(96, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6unfe"]
+atlas = ExtResource("1_6r27q")
+region = Rect2(192, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pxja8"]
+atlas = ExtResource("1_6r27q")
+region = Rect2(288, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iadup"]
+atlas = ExtResource("1_6r27q")
+region = Rect2(384, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_herhr"]
+atlas = ExtResource("1_6r27q")
+region = Rect2(480, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xb3ya"]
+atlas = ExtResource("1_6r27q")
+region = Rect2(576, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7f3b"]
+atlas = ExtResource("1_6r27q")
+region = Rect2(672, 0, 96, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_onrkg"]
 atlas = ExtResource("1_4flbx")
@@ -38,6 +72,35 @@ region = Rect2(192, 0, 64, 80)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_uj7mf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2vmgx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6unfe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pxja8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iadup")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_herhr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xb3ya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s7f3b")
+}],
+"loop": false,
+"name": &"deal_damage",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_onrkg")
 }, {
 "duration": 1.0,
@@ -66,15 +129,17 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4h0vy")
 }],
-"loop": true,
+"loop": false,
 "name": &"take_damage",
 "speed": 5.0
 }]
 
 [node name="PlayerCharacter" type="Node2D"]
+script = ExtResource("1_kww55")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2hs0m")
+animation = &"deal_damage"
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 modulate = Color(1, 0, 0, 1)
@@ -84,3 +149,5 @@ offset_right = 26.0
 offset_bottom = -28.0
 value = 100.0
 show_percentage = false
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

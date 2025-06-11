@@ -82,7 +82,7 @@ script = ExtResource("1_78gm5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_jbj1t")
-frame_progress = 0.494175
+frame_progress = 0.590728
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 modulate = Color(1, 0, 0, 1)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=4 uid="uid://boevkmwtwpy4w"]
+[gd_scene load_steps=51 format=4 uid="uid://boevkmwtwpy4w"]
 
 [ext_resource type="Script" uid="uid://b1r2gt7mjuleq" path="res://scripts/level.gd" id="1_5mrqv"]
 [ext_resource type="Script" uid="uid://duy37gusy15l" path="res://scripts/boss_room.gd" id="2_u43at"]
@@ -13,7 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://c6pr5w5svg2y" path="res://assets/Assets/Tiles.png" id="11_of3pa"]
 [ext_resource type="Texture2D" uid="uid://cgs5ksdrwal8o" path="res://assets/Assets/Tree-Assets.png" id="12_epccb"]
 [ext_resource type="PackedScene" uid="uid://83t4srov24l0" path="res://scenes/player_character.tscn" id="13_i0ick"]
-[ext_resource type="Script" uid="uid://b1dfwur10p0qm" path="res://scripts/character.gd" id="14_mjvab"]
 [ext_resource type="Script" uid="uid://cxhhxrrnfltfc" path="res://scripts/boss.gd" id="15_awar8"]
 [ext_resource type="Texture2D" uid="uid://ca6aecq0wwodf" path="res://assets/Mob/Small Bee/Attack/Attack-Sheet.png" id="15_iwbhl"]
 [ext_resource type="PackedScene" uid="uid://erq8rp3ua1yy" path="res://scenes/deck.tscn" id="16_moneq"]
@@ -10482,7 +10481,6 @@ metadata/_edit_group_ = true
 
 [node name="PlayerCharacter" parent="Main/GameScreen" instance=ExtResource("13_i0ick")]
 position = Vector2(160, 235)
-script = ExtResource("14_mjvab")
 
 [node name="Enemies" type="Node2D" parent="Main/GameScreen"]
 
@@ -10548,8 +10546,10 @@ text = "Start New Game
 "
 
 [node name="Button" type="Button" parent="Main"]
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = -38.0
+offset_top = -31.0
+offset_right = -30.0
+offset_bottom = -23.0
 
 [node name="ManaAmount2" type="Label" parent="Main"]
 offset_left = 68.0
