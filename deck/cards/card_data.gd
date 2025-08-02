@@ -1,4 +1,4 @@
-class_name CardDate extends Resource
+class_name CardData extends Resource
 
 @export var name: String
 @export var description: String
