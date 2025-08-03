@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://d3wvywrypux1r"]
+[gd_scene load_steps=2 format=3 uid="uid://d3wvywrypux1r"]
+
+[ext_resource type="Script" uid="uid://cvikt27jhfgld" path="res://screens/loading_screen/loading_screen.gd" id="1_77p61"]
 
 [node name="LoadingScreen" type="CanvasLayer"]
+script = ExtResource("1_77p61")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
