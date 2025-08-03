@@ -37,6 +37,9 @@ func finish_transition() -> void:
 	await anim_player.animation_finished
 	queue_free()
 
+func update_bar(progress: float) -> void:
+	print()
+
 func report_midpoint() -> void:
 	transition_in_complete.emit()
 	
