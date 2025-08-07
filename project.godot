@@ -17,3 +17,9 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameManager="*res://utils/game_manager.gd"
+
+[debug]
+
+gdscript/warnings/unused_variable=2
+gdscript/warnings/untyped_declaration=2
+gdscript/warnings/unsafe_void_return=2
