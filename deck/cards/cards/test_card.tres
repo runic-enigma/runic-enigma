@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://daeu2qluxdn2y"]
+
+[ext_resource type="Script" uid="uid://jpupu6vxhofv" path="res://deck/cards/card_data.gd" id="1_y0hok"]
+[ext_resource type="Texture2D" uid="uid://wcxl1bmovgvc" path="res://icon.svg" id="2_1e10t"]
+
+[resource]
+script = ExtResource("1_y0hok")
+name = "test name"
+description = "test description"
+cost = 2
+texture = ExtResource("2_1e10t")
+actions = Array[GDScript]([])
+metadata/_custom_type_script = "uid://jpupu6vxhofv"
