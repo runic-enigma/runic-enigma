@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bd6bbvhk2a7gj"]
+[gd_scene load_steps=5 format=3 uid="uid://bd6bbvhk2a7gj"]
 
 [ext_resource type="PackedScene" uid="uid://c2y5pu2acllof" path="res://utils/managers/battle_manager/battle_manager.tscn" id="1_o5ceg"]
 [ext_resource type="Script" uid="uid://c0ktfoy4ybb1m" path="res://screens/levels/button.gd" id="2_7wv3w"]
 [ext_resource type="PackedScene" uid="uid://b3iw7wsxdxikp" path="res://utils/managers/battle_manager/battle_events.tscn" id="3_54teo"]
+[ext_resource type="PackedScene" uid="uid://co8fqjl3gn8cu" path="res://deck/cards/usuable_card/usuable_card.tscn" id="4_54teo"]
 
 [node name="TestRoom" type="Node2D"]
 
@@ -18,5 +19,7 @@ text = "End turn"
 script = ExtResource("2_7wv3w")
 
 [node name="BattleEvents" parent="." groups=["battle_events"] instance=ExtResource("3_54teo")]
+
+[node name="UsuableCard" parent="." instance=ExtResource("4_54teo")]
 
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

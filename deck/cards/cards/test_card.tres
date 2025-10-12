@@ -9,5 +9,4 @@ name = "test name"
 description = "test description"
 cost = 2
 texture = ExtResource("2_1e10t")
-actions = Array[GDScript]([])
 metadata/_custom_type_script = "uid://jpupu6vxhofv"

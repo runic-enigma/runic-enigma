@@ -9,7 +9,6 @@ func setup(initial_cards: Array[CardData]) -> void:
 func shuffle() -> void:
 	cards.shuffle()
 
-
 func draw_card() -> CardData:
 	if not cards.is_empty():
 		return cards.pop_front()

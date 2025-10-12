@@ -11,7 +11,7 @@ func add_card(card_data: CardData, amount: int = 1) -> void:
 			deck_changed.emit()
 			return
 
-		var new_entry: DeckEntry= DeckEntry.new()
+		var new_entry: DeckEntry = DeckEntry.new()
 		new_entry.card = card_data
 		new_entry.quantity = amount
 		entries.append(new_entry)

@@ -5,5 +5,5 @@ enum GameState {
 	MENU,
 	MAP,
 	GAME_OVER,
-	VIDTORY
+	VICTORY
 }
